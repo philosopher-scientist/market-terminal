@@ -1,0 +1,26 @@
+# macOS metadata and generated caches
+.DS_Store
+._*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.venv/
+node_modules/
+
+# Credentials and local datasets/runs
+.env
+.env.*
+!.env.example
+/local-data/
+/local-runs/
+
+# Local project history and working instructions
+/AGENTS.md
+/BACKLOG.md
+/GOAL.md
+/AMZN-INDICATOR-STUDY.md
+/AMZN-DIVERGENCE-STUDY.md
+
+# Provider snapshots, private run logs and local historical exports.
+/evidence/

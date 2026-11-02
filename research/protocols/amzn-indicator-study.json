@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "symbol": "NASDAQ:AMZN",
+  "question": "Can causal daily EMA/MACD warnings identify major AMZN reversals, and which parameters merit a selectable research preset?",
+  "data": "attempt-002/bars.json",
+  "dataSha256": "2f04c408e6948a7e649e88b255b70d038ee031086d483d1e9330029ca6a875dd",
+  "indicatorImplementation": "Reuse native-chart.js indicators.ema and indicators.macd unchanged; SMA-seeded EMA, complete prefix history before evaluation dates.",
+  "periods": {
+    "train": {"start": "2004-01-01", "end": "2015-12-31"},
+    "validation": {"start": "2016-01-01", "end": "2020-12-31"},
+    "holdout": {"start": "2021-01-01", "end": "2026-10-30"}
+  },
+  "emaPairs": [[7,32],[10,30],[12,26],[20,50],[20,100],[50,200]],
+  "macdConfigs": [[8,21,5],[12,26,9],[16,32,9],[20,50,9]],
+  "candidateCount": 24,
+  "signalRule": "At each completed daily close: bullish if EMA fast > slow and MACD line > signal; bearish if both inequalities reverse. Mixed readings retain the last state. Emit only changes between established bull/bear states; initialization emits no warning. No future price enters indicators or signals.",
+  "controls": ["MACD12/26/9 signal crossover only", "EMA20/50 crossover only", "EMA50/200 crossover only", "Default EMA20/50 + MACD12/26/9", "MACD12/26/9 histogram rising/falling for three consecutive changes"],
+  "swingBenchmark": "15% close-based directional-change ZigZag. Retain extreme date and later threshold-confirmation date; never feed labels into the signal. This is a hindsight evaluation oracle, not a tradable entry rule. Final unconfirmed extreme is not scored.",
+  "threshold": 0.15,
+  "sensitivityThresholds": [0.1,0.2],
+  "matching": {
+    "leadBars": 10,
+    "lagBars": 20,
+    "direction": "Bull warning to trough; bear warning to peak",
+    "algorithm": "One warning and one same-direction pivot per match; ordered dynamic programming maximizes cardinality then minimizes total absolute trading-bar lag. Deterministic tie breaks.",
+    "partitionBoundary": "A pivot is eligible only if its entire -10/+20 matching window and its confirmation date lie inside that partition. Report excluded pivots. All partition warning dates remain in the precision denominator; unmatched boundary warnings are counted conservatively."
+  },
+  "selection": {
+    "researchMaxFlipsPerYear": 8,
+    "shortlist": 5,
+    "trainRanking": "Eligible <=8 annual flips, descending timely F1, then lower unmatched warnings/year, lower median absolute pivot lag, stable ID.",
+    "validationChoice": "Choose once among the frozen training top5, subject to <=8 annual flips, by the same ranking. No holdout value participates in selection. If no eligible candidate exists, report that instead of silently relaxing the limit.",
+    "holdout": "After writing selection.json, evaluate only the selected candidate and fixed controls. Evaluate 10%/20% sensitivity without retuning."
+  },
+  "metrics": ["signal count/year", "eligible pivots", "matched pivots", "timely precision/recall/F1", "unmatched warnings/year", "signed pivot lag", "confirmation lag", "pre-pivot matched count and recall", "separate bull/bear counts", "excluded boundary pivots"],
+  "limits": "No return/CAGR/profit claims; no execution, costs, positions or shorting simulated. No parameter guarantees all swings. Lead before hindsight extrema is different from detection before confirmation. <=8 flips/year is a research filter, not a user trade-frequency promise.",
+  "appWarmup": "Compare selected indicator values using all available history versus only the latest500 daily bars at the same completed date before claiming app/study equivalence.",
+  "repository": "No Git repository exists; no branch can be created without initializing one. Preserve source and configuration SHA256 identities instead; production app edits follow existing tests."
+}
