@@ -24,6 +24,9 @@ jobs:
           node tests/verify-regressions.mjs
           node tests/verify-native-chart.mjs
           node tests/verify-chart-data.mjs
+          node tests/verify-crypto-feeds.mjs
+          node tests/verify-feed-fallbacks.mjs
+          node tests/verify-feed-settings.mjs
           node tests/verify-alerts.mjs
           node tests/verify-amzn-study.mjs
           node tests/verify-divergence-engine.mjs

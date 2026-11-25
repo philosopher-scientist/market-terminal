@@ -16,6 +16,21 @@ class Handler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
     def do_GET(self):
+        failure_routes = {
+            "/primary-blocked.html": ["https://api.exchange.coinbase.com", "https://www.bitstamp.net", "https://api.binance.us", "https://data-api.binance.vision", "https://proxy.cors.dev", "https://api.allorigins.win", "https://api.cors.lol", "https://api.twelvedata.com"],
+            "/two-primaries-blocked.html": ["https://www.bitstamp.net", "https://api.binance.us", "https://data-api.binance.vision", "https://proxy.cors.dev"],
+            "/stock-primary-blocked.html": ["https://proxy.cors.dev/https://query2.finance.yahoo.com/", "https://api.kraken.com"],
+        }
+        if self.path.split("?", 1)[0] in failure_routes:
+            content = (ROOT / "market-terminal.html").read_bytes()
+            allowed = " ".join(failure_routes[self.path.split("?", 1)[0]])
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Content-Security-Policy", "script-src 'unsafe-inline'; connect-src " + allowed + "; frame-src 'none'")
+            self.end_headers()
+            self.wfile.write(content)
+            return
         preview_sizes = {"/responsive-mobile.html": (390, 720), "/responsive-tablet.html": (820, 900)}
         if self.path in preview_sizes:
             width, height = preview_sizes[self.path]

@@ -20,7 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 :root{--bg:#080c11;--panel:#0c1118;--raised:#121a24;--line:#202b38;--text:#d5dce6;--muted:#788799;--blue:#63b3ed;--green:#35c8a3;--red:#ee697c;--gold:#d5b26b;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button,a,input,select{outline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue)}button{cursor:pointer;background:transparent;color:inherit;border:0}button:hover{background:var(--raised);color:#fff}button[aria-pressed=true],button.active{color:var(--blue);background:#142638}button:disabled{cursor:default;opacity:.4}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}svg{display:block}button svg{pointer-events:none}button:has(svg){display:inline-flex;align-items:center;justify-content:center;gap:7px}.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.muted{color:var(--muted)}.up{color:var(--green)}.down{color:var(--red)}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}
 .app{height:100dvh;min-height:620px;display:flex;flex-direction:column}.topbar{height:48px;flex-shrink:0;display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding:0 15px;background:var(--panel)}.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}.brandmark{color:var(--blue)}.brand strong{font-size:12px;letter-spacing:1.8px}.brand span{color:var(--muted);font-weight:400}.tag{font:9px var(--mono);letter-spacing:1px;border:1px solid #354356;color:#a2b0c0;border-radius:3px;padding:3px 5px}.market-strip{display:flex;align-items:center;gap:20px;flex:1;overflow:hidden}.strip-item{display:flex;align-items:center;gap:8px;font:11px var(--mono);white-space:nowrap;padding:7px 0}.strip-item b{color:var(--blue);font-weight:500}.strip-item small{font-size:10px}.top-actions{display:flex;gap:8px;align-items:center}.top-actions button{padding:7px 9px;color:#9facbd;font-size:11px;border-radius:3px}.top-actions .download{border:1px solid var(--line)}.dot{display:inline-block;height:5px;width:5px;border-radius:50%;background:var(--muted);margin-right:5px}.dot.up{background:var(--green)}.status-inline{font:10px var(--mono);white-space:nowrap;color:var(--muted)}
-.workspace{flex:1;min-height:0;display:grid;grid-template-columns:218px minmax(0,1fr) 248px}.watchlist{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;background:var(--panel)}.panel-head{height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);font-size:10px;font-weight:600;letter-spacing:1.2px}.panel-head span{font-size:9px;color:var(--muted);font-weight:400;letter-spacing:0}.search-wrap{padding:10px 10px 7px;position:relative}.search-wrap input{width:100%;height:30px;border:1px solid var(--line);border-radius:3px;background:#080d14;color:var(--text);padding:0 27px 0 27px;font-size:11px}.search-icon{position:absolute;left:19px;top:18px;color:var(--muted)}.search-wrap kbd{position:absolute;right:18px;top:18px;color:#536173;font:10px var(--mono);border:1px solid var(--line);padding:0 3px}.list-tabs{display:flex;gap:4px;padding:0 10px 8px}.list-tabs button{font-size:10px;padding:5px 8px;border-radius:3px}.watch-items{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#2b3949 transparent}.sector-head{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px 7px;color:#6d8198;font-size:9px;letter-spacing:1.3px;text-transform:uppercase}.sector-head .chevron{font-size:10px}.sector-head[aria-expanded=false] .chevron{transform:rotate(-90deg)}.market-row{min-height:41px;display:flex;align-items:center;padding:0 10px 0 12px;border-left:2px solid transparent;gap:6px}.market-row.selected{background:#102133;border-left-color:var(--blue)}.market-row:hover{background:#111e2c}.select-market{text-align:left;flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:6px 0;background:transparent!important}.market-name{min-width:0}.market-name b{font:11px var(--mono);font-weight:600}.market-name small{display:block;font-size:9px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:125px}.market-quote{text-align:right;font:10px var(--mono);white-space:nowrap}.market-quote small{display:block;color:var(--muted);font-size:8px;margin-top:4px}.star{font-size:13px;color:#556477;padding:6px 0 6px 4px}.star[aria-pressed=true]{background:transparent;color:var(--gold)}.watch-foot{flex-shrink:0;padding:10px 12px;border-top:1px solid var(--line);font-size:9px;line-height:1.6;color:var(--muted)}.empty-search{padding:24px 15px;color:var(--muted);font-size:11px;line-height:1.7}
+.workspace{flex:1;min-height:0;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;grid-template-rows:minmax(0,1fr)}.watchlist{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;background:var(--panel)}.panel-head{height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);font-size:10px;font-weight:600;letter-spacing:1.2px}.panel-head span{font-size:9px;color:var(--muted);font-weight:400;letter-spacing:0}.search-wrap{padding:10px 10px 7px;position:relative}.search-wrap input{width:100%;height:30px;border:1px solid var(--line);border-radius:3px;background:#080d14;color:var(--text);padding:0 27px 0 27px;font-size:11px}.search-icon{position:absolute;left:19px;top:18px;color:var(--muted)}.search-wrap kbd{position:absolute;right:18px;top:18px;color:#536173;font:10px var(--mono);border:1px solid var(--line);padding:0 3px}.list-tabs{display:flex;gap:4px;padding:0 10px 8px}.list-tabs button{font-size:10px;padding:5px 8px;border-radius:3px}.watch-items{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#2b3949 transparent}.sector-head{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 12px 7px;color:#6d8198;font-size:9px;letter-spacing:1.3px;text-transform:uppercase}.sector-head .chevron{font-size:10px}.sector-head[aria-expanded=false] .chevron{transform:rotate(-90deg)}.market-row{min-height:41px;display:flex;align-items:center;padding:0 10px 0 12px;border-left:2px solid transparent;gap:6px}.market-row.selected{background:#102133;border-left-color:var(--blue)}.market-row:hover{background:#111e2c}.select-market{text-align:left;flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:6px 0;background:transparent!important}.market-name{min-width:0}.market-name b{font:11px var(--mono);font-weight:600}.market-name small{display:block;font-size:9px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:125px}.market-quote{text-align:right;font:10px var(--mono);white-space:nowrap}.market-quote small{display:block;color:var(--muted);font-size:8px;margin-top:4px}.star{font-size:13px;color:#556477;padding:6px 0 6px 4px}.star[aria-pressed=true]{background:transparent;color:var(--gold)}.watch-foot{flex-shrink:0;padding:10px 12px;border-top:1px solid var(--line);font-size:9px;line-height:1.6;color:var(--muted)}.empty-search{padding:24px 15px;color:var(--muted);font-size:11px;line-height:1.7}
 .center{min-width:0;display:flex;flex-direction:column;position:relative}.asset-head{height:72px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 16px}.asset-icon{height:35px;width:35px;border:1px solid #2a3c50;display:flex;align-items:center;justify-content:center;background:#111f2d;border-radius:50%;font:20px var(--mono);color:var(--blue);flex-shrink:0}.asset-title{flex:1;min-width:0}.asset-title h1{font-size:16px;font-weight:500;margin:0 0 5px}.asset-title p{margin:0;font:10px var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.asset-value{text-align:right}.asset-value strong{font:22px var(--mono);letter-spacing:-1px;color:#ecf2fa}.asset-value small{display:block;font:10px var(--mono);margin-top:5px}.quote-meta{font-size:9px;color:var(--muted)}.toolbar{display:flex;align-items:center;gap:1px;min-height:36px;padding:3px 9px;border-bottom:1px solid var(--line);flex-shrink:0;flex-wrap:wrap}.toolbar .time{font:10px var(--mono);padding:6px 7px;border-radius:2px}.toolbar .divider{height:16px;width:1px;background:var(--line);margin:0 7px}.chart-type{height:25px;width:30px;border-radius:2px}.toolbar .spacer{flex:1}.tool-icon{height:27px;width:29px;color:#8395ac;border-radius:2px}.indicators{display:flex;align-items:center;gap:5px;min-height:34px;padding:4px 13px;border-bottom:1px solid var(--line);flex-shrink:0;flex-wrap:nowrap;overflow-x:auto}.indicator-label{font-size:9px;color:var(--muted);margin-right:4px;letter-spacing:.7px}.indicator{border:1px solid var(--line);border-radius:3px;padding:3px 7px;font:9px var(--mono);color:#718197;white-space:nowrap;flex-shrink:0}.indicator[aria-pressed=true]{background:#132133;border-color:#2e4963;color:#8dc6f1}.indicator[data-study=ema][aria-pressed=true]{color:var(--gold)}.indicator[data-study=bb][aria-pressed=true]{color:#bca4f3}.chart-wrap{flex:1;min-height:300px;position:relative;overflow:hidden;background:#080c11}.chart-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;background:var(--bg);z-index:2;color:var(--muted);padding:25px}.chart-message strong{font-size:14px;color:var(--text);font-weight:500}.chart-message p{font-size:11px;line-height:1.6;max-width:350px;margin:0}.chart-message .retry{border:1px solid var(--line);padding:8px 14px;border-radius:3px;color:var(--blue)}.spinner{height:23px;width:23px;border:2px solid #1d2d3c;border-top-color:var(--blue);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.chart-note{border-top:1px solid var(--line);padding:6px 12px;font:9px var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:10px;line-height:1.5;flex-shrink:0}.chart-note button{color:var(--blue);padding:0;font-size:9px}.rightbar{border-left:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:auto;scrollbar-width:thin}.rightbar .panel-head{padding:0 11px;letter-spacing:.9px}.feed-label{font:9px var(--mono);padding:7px 11px;color:var(--muted);border-bottom:1px solid var(--line)}.book-tabs{display:flex;gap:7px;align-items:center}.book-tabs button{padding:3px 0;font-size:10px;color:#6e8096;letter-spacing:1px}.book-tabs button.active{color:var(--text);background:transparent}.columns,.book-row,.trade-row{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:right;gap:6px;padding:0 11px;font:10px var(--mono);position:relative}.columns{padding-top:8px;padding-bottom:7px;font-size:8px;color:var(--muted)}.columns span:first-child,.book-row span:first-child,.trade-row span:first-child{text-align:left}.book-row{height:20px;align-items:center}.book-row span,.trade-row span{position:relative;z-index:1}.book-row::before{content:"";position:absolute;right:0;top:1px;bottom:1px;width:var(--depth);background:var(--fill);opacity:.12}.mid-price{border-top:1px solid #1a2733;border-bottom:1px solid #1a2733;margin:6px 0;padding:9px 11px;display:flex;align-items:center;justify-content:space-between;font:16px var(--mono)}.mid-price small{font:8px var(--mono);color:var(--muted);text-align:right;line-height:1.5}.book-empty,.stock-details{padding:22px 16px;color:var(--muted);font-size:11px;line-height:1.8}.book-empty strong,.stock-details strong{display:block;font-size:12px;color:var(--text);font-weight:500;margin-bottom:8px}.book-empty button{color:var(--blue);border:1px solid var(--line);padding:6px 9px;border-radius:3px;margin-top:10px}.depth-chart{height:272px;padding:15px 10px 5px}.depth-chart svg{height:225px;width:100%}.depth-caption{font:9px var(--mono);color:var(--muted);padding:5px 10px 12px;line-height:1.6}.trade-section{margin-top:14px;border-top:1px solid var(--line);flex:1;min-height:150px}.trade-row{height:21px;align-items:center;font-size:9px}.trade-row time{color:var(--muted)}.tape-foot{padding:10px 11px;font-size:9px;color:var(--muted);line-height:1.6}.stock-details dl{font:10px var(--mono);margin:20px 0}.stock-details dt{color:#596d84;line-height:1.7;margin-top:14px;font-size:9px}.stock-details dd{margin:3px 0;color:var(--text)}.stock-details a{display:inline-block;margin-top:9px;font-size:10px}.stock-details .rule{height:1px;background:var(--line);margin:20px 0}.footer{height:25px;flex-shrink:0;border-top:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 12px;background:var(--panel);font:9px var(--mono);color:var(--muted)}.footer .grow{flex:1}.footer button{font:9px var(--mono);color:var(--muted);padding:0}.footer time{white-space:nowrap}.mobile-menu{display:none!important}.drawer-close{display:none}.drawer-shade{display:none;position:fixed;inset:0;background:#0009;z-index:9}.toast{position:fixed;left:50%;bottom:45px;transform:translateX(-50%);padding:10px 16px;background:#1c3043;color:#d6e9f8;border:1px solid #31526c;font-size:11px;border-radius:4px;z-index:20;max-width:90vw;box-shadow:0 8px 24px #0008}
 dialog{background:#101822;color:var(--text);border:1px solid #34465d;border-radius:7px;width:min(600px,calc(100vw - 30px));padding:0;max-height:85dvh;box-shadow:0 20px 90px #000a}dialog::backdrop{background:#000b}dialog header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:16px 20px}dialog h2{margin:0;font-size:15px;font-weight:500}dialog header button{font-size:20px;color:var(--muted)}.dialog-body{padding:4px 20px 18px;font-size:12px;line-height:1.8}.dialog-body h3{font-size:11px;color:var(--blue);font-weight:500;margin:18px 0 6px}.dialog-body p{margin:5px 0}.dialog-body code{color:#a9bdd3;font:11px var(--mono)}.dialog-body ul{padding-left:18px;font-size:11px}.dialog-body .fine{font-size:10px;color:var(--muted)}.center:fullscreen{background:var(--bg);height:100vh}.center.focus-mode{position:fixed;inset:0;background:var(--bg);z-index:30}.no-script{padding:40px;color:var(--red);text-align:center}
 .data-timing{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0;min-height:31px;padding:5px 12px;border-bottom:1px solid var(--line);background:var(--panel);font:9px var(--mono);line-height:1.6;color:var(--muted)}.data-badge{display:inline-block;white-space:nowrap;padding:2px 6px;border:1px solid #294438;border-radius:3px;letter-spacing:.5px;color:var(--green);background:#11251e}.data-badge.delayed{border-color:#65502a;color:#f1c978;background:#2b2113}.data-timing-detail{min-width:0}
@@ -44,7 +44,7 @@ dialog{background:#101822;color:var(--text);border:1px solid #34465d;border-radi
   <header class="topbar">
     <div class="brand"><svg class="brandmark" width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 2v20M12 5v14M19 1v22" stroke="currentColor"/><path d="M2 7h6v9H2zM9 8h6v5H9zM16 5h6v12h-6z" fill="#0c1118" stroke="currentColor"/></svg><strong>MARKET<span> TERMINAL</span></strong><span class="tag" id="universeTag">MVP / 35</span></div>
     <nav class="market-strip" id="marketStrip" aria-label="Crypto quick access"></nav>
-    <div class="top-actions"><span class="status-inline" id="connection"><i class="dot"></i>CONNECTING</span><button id="aboutBtn" title="Data sources and help">Sources<span> & help</span></button><button class="download" id="downloadBtn" title="Save a portable copy of this HTML file"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v9m-3-3 3 3 3-3M2 11v3h12v-3" stroke="currentColor"/></svg><span>Save HTML</span></button></div>
+    <div class="top-actions"><span class="status-inline" id="connection"><i class="dot"></i>CONNECTING</span><button id="feedSettingsBtn" title="Configure fallback sources and view source health">Data sources</button><button id="aboutBtn" title="Data sources and help">Help</button><button class="download" id="downloadBtn" title="Save a portable copy of this HTML file"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v9m-3-3 3 3 3-3M2 11v3h12v-3" stroke="currentColor"/></svg><span>Save HTML</span></button></div>
   </header>
   <div class="workspace">
     <aside class="watchlist" aria-label="Market watchlist" id="watchlist">
@@ -66,14 +66,20 @@ dialog{background:#101822;color:var(--text);border:1px solid #34465d;border-radi
       <div class="chart-note"><span>CHART · <span id="chartStatus">Loading provider</span></span><span>Scroll to zoom · drag to pan · native chart tools <button id="chartHelp" aria-label="Chart help">↗</button></span></div>
     </main>
     <aside class="rightbar" aria-label="Market detail">
-      <section class="crypto-details" id="cryptoDetails"><div class="panel-head"><div class="book-tabs"><button id="bookTab" class="active" aria-pressed="true">ORDER BOOK</button><button id="depthTab" aria-pressed="false">DEPTH</button></div><span>USD</span></div><div class="feed-label" id="bookStatus">KRAKEN · Waiting for snapshot</div><div id="bookBody"><div class="book-empty">Connecting to the public order book…</div></div><div id="depthBody" hidden><div class="depth-chart" id="depthChart"></div><div class="depth-caption">Cumulative base-asset quantity · price (USD)<br><span class="up">Bids</span> / <span class="down">Asks</span> · Top 25 levels per side</div></div></section>
-      <section class="trade-section" id="tradeSection"><div class="panel-head">RECENT TRADES <span>Kraken</span></div><div class="columns"><span>TIME (UTC)</span><span>PRICE</span><span>SIZE</span></div><div id="tradeBody"><div class="book-empty">Waiting for trades…</div></div><div class="tape-foot" id="tapeStatus">Public exchange snapshots · refresh every 10s</div></section>
+      <section class="crypto-details" id="cryptoDetails"><div class="panel-head"><div class="book-tabs"><button id="bookTab" class="active" aria-pressed="true">ORDER BOOK</button><button id="depthTab" aria-pressed="false">DEPTH</button></div><span>USD</span></div><div class="feed-label" id="bookStatus">Waiting for compatible source</div><div id="bookBody"><div class="book-empty">Connecting to the public order book…</div></div><div id="depthBody" hidden><div class="depth-chart" id="depthChart"></div><div class="depth-caption">Cumulative base-asset quantity · price (USD)<br><span class="up">Bids</span> / <span class="down">Asks</span> · Top 25 levels per side</div></div></section>
+      <section class="trade-section" id="tradeSection"><div class="panel-head">RECENT TRADES <span id="tradeVenue">Public feeds</span></div><div class="columns"><span>TIME (UTC)</span><span>PRICE</span><span>SIZE</span></div><div id="tradeBody"><div class="book-empty">Waiting for trades…</div></div><div class="tape-foot" id="tapeStatus">Public exchange snapshots · refresh every 10s</div></section>
       <section class="stock-details" id="stockDetails" hidden></section>
     </aside>
   </div>
   <footer class="footer"><span id="footerFeed"><i class="dot"></i>Public feeds</span><span class="portable">ONE FILE · NO API KEY</span><span class="grow"></span><button id="footerHelp">Data & methodology</button><time id="clock">— UTC</time></footer>
 </div>
 <div class="drawer-shade" id="drawerShade"></div><div class="toast" id="toast" role="status" hidden></div>
+<dialog class="manager" id="feedsDialog" aria-labelledby="feedsTitle"><header><h2 id="feedsTitle">Data sources & fallbacks</h2><button id="closeFeeds" type="button" aria-label="Close data sources">×</button></header><div class="dialog-body">
+<p class="fine">Choose up to N compatible source paths per request. The selected crypto venue is tried first when enabled; backups use the exact same base and quote currencies. A fallback can change the trading venue and history depth; each snapshot names its actual source. USD and USDT are never substituted.</p>
+<p id="feedError" class="manager-status error" role="alert"></p><p id="feedStatus" class="fine" aria-live="polite"></p>
+<form id="feedsForm" class="form-grid"><label>Maximum source attempts (N)<input id="feedMaxSources" type="number" min="1" max="20" required></label><label>Timeout per source (seconds)<input id="feedTimeout" type="number" min="0.5" max="10" step="0.5" required></label><label>Total time budget (seconds)<input id="feedDeadline" type="number" min="1" max="25" step="1" required></label><label>Twelve Data key (optional)<input id="feedTwelveKey" type="password" maxlength="200" autocomplete="off"></label><div class="wide"><h3>Data providers</h3><div id="feedProviders" class="alert-delivery"></div><h3>Yahoo relay paths</h3><div id="feedTransports" class="alert-delivery"></div></div><p class="fine wide">Stocks have Yahoo mirror/relay paths and an optional independent Twelve Data feed. A personal Twelve Data key is sent directly to Twelve Data and saved only in this browser; it is excluded from HTML and market-list exports. Its plan limits apply. Community relays may be unavailable or rate-limited. Multiple Yahoo paths remain one data provider. Selecting N does not create coverage that a provider lacks.</p><button class="action" type="submit">Apply sources</button><button class="action" id="resetFeeds" type="button">Reset source defaults</button></form>
+<h3>Coverage for this market</h3><div id="feedCoverage"></div><h3>Source health in this tab</h3><div id="feedHealth"></div>
+</div></dialog>
 <dialog class="manager alerts-dialog" id="alertsDialog" aria-labelledby="alertsTitle"><header><h2 id="alertsTitle">Alarms & major swings</h2><button id="closeAlerts" aria-label="Close alerts">×</button></header><div class="dialog-body">
 <p class="fine">Monitor saved markets even while viewing another chart. Checks run every 60 seconds while this page is open; browser throttling, sleep, offline periods and delayed sources can postpone or miss alerts. No monitoring after closing this page.</p><p id="alertsStorageNotice" class="storage-notice"></p><p id="alertsMessage" class="manager-status" role="status" aria-live="polite"></p>
 <form id="alertForm" class="form-grid"><label class="wide">Market<select id="alertSymbol" required></select></label><label>Alarm<select id="alertType"><option value="above">Price at or above</option><option value="below">Price at or below</option><option value="swing">Major swing (%)</option></select></label><label><span id="alertThresholdLabel">Price level (quote currency)</span><input id="alertThreshold" type="number" min="0.00000001" max="999999999999" step="any" required></label><div class="wide form-grid" id="alertSwingOptions" hidden><label>Time window<select id="alertWindow"><option value="1">1 hour</option><option value="24" selected>24 hours</option></select></label><label>Direction<select id="alertDirection"><option value="either">Either direction</option><option value="up">Rise</option><option value="down">Fall</option></select></label></div><label>Frequency<select id="alertRepeat"><option value="once">Once, then disable</option><option value="repeat">Repeat on new crossing</option></select></label><label>Label (optional)<input id="alertLabel" maxlength="80" placeholder="e.g. BTC major move"></label><button class="action" id="alertSubmit" type="submit">Add alarm</button><button class="action" id="cancelAlertEdit" type="button" hidden>Cancel edit</button><button class="action" id="majorSwingPreset" type="button">Use 5% / 24h swing preset</button></form>
@@ -86,7 +92,7 @@ dialog{background:#101822;color:var(--text);border:1px solid #34465d;border-radi
 <dialog class="manager" id="marketsDialog" aria-labelledby="marketsTitle"><header><h2 id="marketsTitle">Manage markets & categories</h2><button id="closeMarkets" aria-label="Close market manager">×</button></header><div class="dialog-body">
 <p class="fine">Saved in this browser. Export your list to back it up or move it with the HTML file.</p><p class="storage-notice" id="storageNotice"></p><p class="manager-status" id="managerStatus" role="status" aria-live="polite"></p>
 <form id="marketForm" class="form-grid"><label>Chart symbol<input id="marketSymbol" placeholder="NASDAQ:INTC or BINANCE:SOLUSDT" maxlength="101" required autocomplete="off" spellcheck="false"></label><label>Name<input id="marketName" placeholder="Company or market name" maxlength="80" required autocomplete="off"></label><label>Category<select id="marketCategory" required></select></label><button class="action" type="submit">Add market</button></form>
-<p class="fine">Chart data supports US stocks, selected international exchanges, Kraken and Binance. Source availability varies. Added markets are chart-only; BTC, ETH and BNB retain their Kraken quote, book and trade panels.</p>
+<p class="fine">Chart data supports US stocks, selected international exchanges, Kraken and Binance. Source availability varies. Added markets are chart-only; BTC, ETH and BNB retain their exchange quote, book and trade panels.</p>
 <form id="categoryForm" class="inline-form"><label>New category<input id="categoryName" maxlength="60" placeholder="e.g. Clean transport" required autocomplete="off"></label><button class="action" type="submit">Add category</button></form>
 <h3>Your markets</h3><label>Filter saved markets<input id="manageFilter" placeholder="Ticker, company, exchange or category" autocomplete="off"></label><div class="catalog-list" id="manageMarketList"></div>
 <details><summary>Remove a category</summary><p class="fine">Its markets move to the destination you choose. No markets are deleted.</p><form id="removeCategoryForm" class="form-grid"><label>Category to remove<select id="removeCategorySelect"></select></label><label>Move its markets to<select id="moveCategorySelect"></select></label><button class="action" type="submit">Remove category</button></form></details>
@@ -99,8 +105,8 @@ dialog{background:#101822;color:var(--text);border:1px solid #34465d;border-radi
 <h3>Strategy / indicator presets</h3><p>Indicator settings offers Trend, Turtle, AMZN research, Momentum, Volatility and Custom views. AMZN research applies daily EMA7/32 and MACD20/50/9 from the historical study; its settings preview states the holdout results. It shows indicator curves without executing signal rules or alarms. Choose a preset, then Apply inputs; Esc discards the draft selection. Named presets set daily candles and their indicator mix. Manual period, visibility or interval changes label the view Custom. Turtle shows preceding 20/55-bar breakout channels, 10/20-bar exit levels and Wilder ATR20. The 20-bar channel is shared by System1 entry and System2 exit. ATR on a forming candle is provisional; no trading rules, orders or backtest are executed.</p>
 <h3>Chart shortcuts & future space</h3><p><b>Esc</b> first closes an open dialog, market drawer or expanded view; otherwise it cancels an unfinished trend or undoes the last drawing change. <b>Ctrl/Cmd+Z</b> also undoes drawings, while editing text keeps its normal keyboard undo. Clear lines is undoable. The last 50 drawing changes per symbol survive in-session interval and symbol changes. After reload, Undo removes restored lines one at a time; the previous editing history is not stored.</p><p><b>Future space</b> reserves blank chart slots after the last candle (20% by default). Pan or zoom into that projected region to extend trend lines. It contains no market data or predictions; projected dates use the selected bar duration. The default analysis view is daily EMA 20/50/100/200, SMA 200 available, RSI 14 and MACD 12/26/9 with volume. Bollinger Bands use 20 periods and 2 standard deviations. EMA 1 is available and equals the closing price. These are viewing defaults, not a validated trading strategy or guaranteed trade frequency.</p>
 <h3>Alarms</h3><p>Alerts supports price levels and 1h/24h percentage swings for saved markets. Rules, trigger state and history persist locally and transfer in market-list JSON. Monitoring runs while this page is open; browser throttling, sleep, connectivity and delayed sources can postpone alerts. Sound requires activation in each tab; desktop notifications need browser permission. Banners and history work without either.</p>
-<h3>Your market list</h3><p>Use <b>Manage markets</b> below the watchlist to add exchange-qualified symbols and categories, move markets between categories, or remove markets. Removing a category moves its markets to your chosen destination. At least one market and category remain. Changes are saved in this browser when storage is available; direct-file storage varies by browser. Export JSON for backup and transfer. Import validates the entire list before replacing it. Names are labels; available data adapters and the remote sources determine whether a symbol can be displayed.</p><p>Additional markets are chart-only, including added crypto pairs. Only the starter BTC, ETH and BNB markets have surrounding Kraken snapshots. Category placement does not change a market's data source. Charts identify the candle source, refresh cadence and any reported delay. Missing source latency is marked DELAY UNSPECIFIED.</p>
-<h3>Know your feed</h3><p>Kraken provides the starter crypto quotes, book and trade snapshots, plus candles. Binance candles use its public market-data API. Crypto candles refresh every 20 seconds; starter quotes every 20s, book/trades every 10s. These are snapshots rather than continuous streams. Kraken returns at most 720 candles; Binance up to 1,000. The latest candle is still forming.</p><p>Stock and supported international/FX candles come from Yahoo Finance through the public cors.dev relay, because direct browser requests are not supported by that source. Stock candles refresh every 60s. No API key or local server is required. The relay and data source are external dependencies and can rate-limit or fail. Source delays are unspecified unless the response supplies an exact value. The displayed candle timestamp is the candle opening time, not a last-trade freshness guarantee. General Fusion predecessor bars before 13 July 2026 are excluded.</p>
+<h3>Your market list</h3><p>Use <b>Manage markets</b> below the watchlist to add exchange-qualified symbols and categories, move markets between categories, or remove markets. Removing a category moves its markets to your chosen destination. At least one market and category remain. Changes are saved in this browser when storage is available; direct-file storage varies by browser. Export JSON for backup and transfer. Import validates the entire list before replacing it. Names are labels; available data adapters and the remote sources determine whether a symbol can be displayed.</p><p>Additional markets are chart-only, including added crypto pairs. Only the starter BTC, ETH and BNB markets have surrounding exchange snapshots. Category placement does not change a market's data source. Charts identify the candle source, refresh cadence and any reported delay. Missing source latency is marked DELAY UNSPECIFIED.</p>
+<h3>Know your feed</h3><p>Crypto data uses the selected venue first, then enabled compatible Kraken, Coinbase Exchange, Bitstamp and Binance adapters. Each quote, chart, book and tape names its actual source; fallback venues can differ. USD and USDT are never substituted. Open Data sources to set N, timeouts and enabled providers and inspect coverage and source health. Crypto candles refresh every 20 seconds; starter quotes every 20s, book/trades every 10s. These are snapshots rather than continuous streams. Kraken returns roughly 720 candles; Binance and Bitstamp up to 1,000 source bars, Coinbase up to 300. Aggregated fallback intervals have shorter history and omit missing buckets. The latest candle is still forming.</p><p>Stock and supported international/FX candles use Yahoo mirrors through configured public relays. An optional personal Twelve Data key enables an independent feed for supported US stocks and FX. Multiple Yahoo relay paths remain one data provider. Keys stay in separate browser storage and are excluded from HTML and market-list exports. Stock candles refresh every 60s. No API key or local server is required. Data sources and relays are external dependencies and can fail. Each candidate has a timeout and requests have a total budget; failures advance to compatible sources, with cooldowns and Retry-After handling. Community relay backups may be unavailable. Alarm requests require a timestamped quote and continue to another source if one is missing. Source delays are unspecified unless the response supplies an exact value. The displayed candle timestamp is the candle opening time, not a last-trade freshness guarantee. General Fusion predecessor bars before 13 July 2026 are excluded.</p>
 <h3>When a provider is unavailable</h3><p>Use reload to retry. Privacy extensions, firewalls, network failures, or provider limits can block remote data. A successful download does not establish that the source is current; inspect the candle dates, fetch timestamp and source timing label. Offline use retains the interface, without live charts or quotes; an existing in-tab candle snapshot is explicitly marked stale after a failed refresh.</p>
 <p class="fine">Inspired by the former Cryptowatch terminal. This app includes native charts, configurable indicators, saved drawings and local alerts. Advanced heatmaps, exchange aggregation and order execution are not included.</p>
 </div></dialog>
@@ -418,6 +424,161 @@ const MarketAlerts=(()=>{
  return {validateRules,evaluate,reset};
 })();
 /* ALERT_ENGINE_END */
+/* CRYPTO_FEEDS_START */
+// Embedded into the portable application; no required runtime library or server.
+const CryptoFeeds = (()=>{
+ 'use strict';
+ const quotes=['USDT','USDC','USD','EUR','GBP','AUD','CAD','JPY','BTC','ETH','BNB','DAI'];
+ const names={kraken:'Kraken',coinbase:'Coinbase Exchange',bitstamp:'Bitstamp',binance:'Binance','binance-us':'Binance.US'};
+ const steps={'1':60,'5':300,'15':900,'30':1800,'60':3600,'240':14400,D:86400,W:604800};
+ const binanceSteps={'1':'1m','5':'5m','15':'15m','30':'30m','60':'1h','240':'4h',D:'1d',W:'1w'};
+ const legacyBases={XXBT:'BTC',XETH:'ETH',XXDG:'DOGE',XXRP:'XRP',XLTC:'LTC',XXLM:'XLM',XXMR:'XMR',XZEC:'ZEC',XETC:'ETC',XREP:'REP'};
+ const legacyQuotes={ZUSD:'USD',ZEUR:'EUR',ZGBP:'GBP',ZAUD:'AUD',ZCAD:'CAD',ZJPY:'JPY',XXBT:'BTC',XETH:'ETH'};
+ const alias=base=>base==='XBT'?'BTC':base==='XDG'?'DOGE':base;
+ const numeric=value=>(typeof value==='number'||typeof value==='string'&&value.trim()!=='')&&Number.isFinite(Number(value));
+ const n=value=>numeric(value)?Number(value):NaN;
+ function identity(raw){
+  const pair=String(raw||'').toUpperCase().replace(/[-/_]/g,'');
+  if(['FDUSD','RLUSD','PYUSD'].some(quote=>pair.endsWith(quote)&&pair.length>quote.length))throw Error('This quote currency is not supported; it must not be treated as USD.');
+  for(const [prefix,base]of Object.entries(legacyBases)){
+   if(pair.startsWith(prefix)&&legacyQuotes[pair.slice(prefix.length)])return {base,quote:legacyQuotes[pair.slice(prefix.length)]};
+  }
+  for(const quote of quotes){if(pair.endsWith(quote)&&pair.length>quote.length){const base=alias(pair.slice(0,-quote.length));if(/^[A-Z0-9]{1,25}$/.test(base))return {base,quote};}}
+  throw Error('Crypto pair needs a supported, explicit quote currency.');
+ }
+ function market(route,m={}){
+  const routePair=route.pair||String(route.symbol||m.symbol||'').split(':')[1],raw=m.pair||routePair;
+  const {base,quote}=identity(raw),krakenBase=base==='BTC'?'XBT':base==='DOGE'?'XDG':base,krakenQuote=quote==='BTC'?'XBT':quote;
+  if(routePair){const expected=identity(routePair);if(expected.base!==base||expected.quote!==quote)throw Error('Configured crypto pair does not match the requested market.');}
+  return {base,quote,krakenPair:route.type==='kraken'?String(raw).toUpperCase().replace(/[-/_]/g,''):krakenBase+krakenQuote,requestedVenue:route.type};
+ }
+ function supports(provider,m,kind,interval){
+  if(!names[provider]||!m||!/^[A-Z0-9]{1,25}$/.test(m.base)||!quotes.includes(m.quote)||!['candles','quote','book','trades'].includes(kind)||kind==='candles'&&!steps[interval])return false;
+  if(provider==='binance'&&m.quote==='USD')return false;
+  if(['coinbase','bitstamp','binance-us'].includes(provider)&&['AUD','CAD','JPY'].includes(m.quote))return false;
+  return true; // Candidate contract compatibility; the remote venue still determines pair listing/availability.
+ }
+ function provenance(provider,m){
+  const sourceSymbol=provider==='kraken'?m.krakenPair:provider==='coinbase'?m.base+'-'+m.quote:provider==='bitstamp'?(m.base+m.quote).toLowerCase():m.base+m.quote;
+  return {provider,venue:names[provider],currency:m.quote,sourceSymbol,delayMinutes:null};
+ }
+ function assertIdentity(raw,m){const found=identity(raw);if(found.base!==m.base||found.quote!==m.quote)throw Error('The source returned a different crypto market / quote currency.');}
+ function clean(rows){
+  const byTime=new Map();
+  for(const row of rows){
+   const b={t:n(row.t),o:n(row.o),h:n(row.h),l:n(row.l),c:n(row.c),v:n(row.v)};
+   if(Object.values(b).every(Number.isFinite)&&b.t>0&&b.o>0&&b.l>0&&b.c>0&&b.h>=Math.max(b.o,b.c,b.l)&&b.l<=Math.min(b.o,b.c)&&b.v>=0)byTime.set(b.t,b);
+  }
+  return [...byTime.values()].sort((a,b)=>a.t-b.t);
+ }
+ function aggregate(bars,rawStep,targetStep,now){
+  if(rawStep===targetStep)return bars;
+  const offset=targetStep===604800?345600:0,bin=t=>Math.floor((t-offset)/targetStep)*targetStep+offset;
+  const grouped=new Map();
+  for(const b of bars){const t=bin(b.t);if(!grouped.has(t))grouped.set(t,[]);grouped.get(t).push(b);}
+  const nowSeconds=(typeof now==='function'?now():now)/1000,current=bin(nowSeconds),out=[];
+  for(const [t,group]of grouped){
+   // Do not turn a missing source interval or truncated leading bucket into a complete candle.
+   const last=t===current?Math.floor(nowSeconds/rawStep)*rawStep:t+targetStep-rawStep;
+   if(group[0].t!==t||group[group.length-1].t!==last||group.length!==Math.floor((last-t)/rawStep)+1||group.some((b,i)=>i&&b.t!==group[i-1].t+rawStep))continue;
+   out.push({t,o:group[0].o,h:Math.max(...group.map(b=>b.h)),l:Math.min(...group.map(b=>b.l)),c:group[group.length-1].c,v:group.reduce((sum,b)=>sum+b.v,0)});
+  }
+  return out;
+ }
+ function timeMs(value){const parsed=typeof value==='string'&&value.includes('T')?Date.parse(value):n(value);return Number.isFinite(parsed)&&parsed>0?parsed:null;}
+ function krakenRow(payload,m){
+  if(!Array.isArray(payload?.error)||payload.error.length)throw Error(payload?.error?.join('; ')||'Kraken returned an invalid response.');
+  const found=Object.entries(payload.result||{}).find(([key])=>key!=='last');
+  if(!found)throw Error('Kraken returned no data for this market.');assertIdentity(found[0],m);return found[1];
+ }
+ function normalizeQuote(last,open,changeBasis,observedAt,explicitChange){
+  last=n(last);open=n(open);
+  const change=Number.isFinite(open)&&open>0?(last-open)/open*100:n(explicitChange);
+  if(!Number.isFinite(last)||last<=0||!Number.isFinite(change))throw Error('The source returned no usable crypto quote / change baseline.');
+  return {last,change,changeBasis,observedAt};
+ }
+ function normalizeBook(payload,observedAt){
+  const levels=rows=>(Array.isArray(rows)?rows:[]).map(row=>[n(row[0]),n(row[1])]).filter(row=>row.every(Number.isFinite)&&row[0]>0&&row[1]>0);
+  const bids=levels(payload?.bids).sort((a,b)=>b[0]-a[0]).slice(0,25),asks=levels(payload?.asks).sort((a,b)=>a[0]-b[0]).slice(0,25);
+  if(!bids.length||!asks.length||asks[0][0]<bids[0][0])throw Error('The source returned an empty, invalid or crossed order book.');
+  if(payload.auction_mode===true)throw Error('The source order book is indicative during an auction.');
+  return {bids,asks,observedAt};
+ }
+ function normalizeTrades(rows){
+  if(!Array.isArray(rows))throw Error('The source returned an invalid trade list.');
+  const items=rows.map(row=>({price:n(row.price),size:n(row.size),time:n(row.time),side:row.side})).filter(row=>row.price>0&&row.size>0&&row.time>0&&[row.price,row.size,row.time].every(Number.isFinite)&&['b','s'].includes(row.side)).sort((a,b)=>b.time-a.time).slice(0,50);
+  if(rows.length&&!items.length)throw Error('The source returned no usable trade records.');
+  return {items,observedAt:items.length?items[0].time*1000:null};
+ }
+ async function request(provider,kind,m,interval,{json,now=Date.now}={}){
+  if(!supports(provider,m,kind,interval))throw Error('This provider does not support the crypto request / quote currency.');
+  if(typeof json!=='function')throw Error('A bounded JSON request function is required.');
+  const meta=provenance(provider,m),targetStep=steps[interval],symbol=meta.sourceSymbol;
+  const url=(base,params)=>base+(params?'?'+new URLSearchParams(params):'');
+  if(provider==='kraken'){
+   const endpoint={candles:'OHLC',quote:'Ticker',book:'Depth',trades:'Trades'}[kind];
+   const params={pair:symbol};if(kind==='candles')params.interval=String(targetStep/60);if(kind==='book')params.count='25';if(kind==='trades')params.count='50';
+   const row=krakenRow(await json(url('https://api.kraken.com/0/public/'+endpoint,params)),m);
+   if(kind==='quote')return {...meta,...normalizeQuote(row.c?.[0],row.o,'since 00:00 UTC',null)};
+   if(kind==='book')return {...meta,...normalizeBook(row,null)};
+   if(kind==='trades')return {...meta,...normalizeTrades(Array.isArray(row)?row.map(r=>({price:r[0],size:r[1],time:r[2],side:r[3]})):null)};
+   if(!Array.isArray(row))throw Error('Kraken returned no candle history.');
+   const bars=clean(row.map(r=>({t:r[0],o:r[1],h:r[2],l:r[3],c:r[4],v:r[6]})));
+   if(bars.length<2)throw Error('Kraken returned fewer than two usable candles.');
+   return {...meta,bars,interval,historyNote:'Kraken supplies about 720 recent candles; the latest candle may still be forming.'};
+  }
+  if(provider==='coinbase'){
+   const base='https://api.exchange.coinbase.com/products/'+encodeURIComponent(symbol);
+   if(kind==='quote'){
+    const [ticker,stats]=await Promise.all([json(base+'/ticker'),json(base+'/stats')]);
+    return {...meta,...normalizeQuote(ticker.price,stats.open,'rolling 24h',timeMs(ticker.time))};
+   }
+   if(kind==='book'){const data=await json(base+'/book?level=2');return {...meta,...normalizeBook(data,timeMs(data.time))};}
+   if(kind==='trades'){
+    const rows=await json(base+'/trades?limit=50');
+    return {...meta,...normalizeTrades(Array.isArray(rows)?rows.map(r=>({price:r.price,size:r.size,time:(timeMs(r.time)||NaN)/1000,side:r.side==='sell'?'b':r.side==='buy'?'s':''})):null)};
+   }
+   const rawStep=interval==='30'?900:interval==='240'?3600:interval==='W'?86400:targetStep;
+   const rows=await json(base+'/candles?granularity='+rawStep);if(!Array.isArray(rows))throw Error('Coinbase returned no candle history.');
+   const native=clean(rows.map(r=>({t:r[0],o:r[3],h:r[2],l:r[1],c:r[4],v:r[5]}))).slice(-300),bars=aggregate(native,rawStep,targetStep,now);
+   if(bars.length<2)throw Error('Coinbase returned fewer than two usable candles for this interval.');
+   return {...meta,bars,interval,historyNote:'Up to 300 Coinbase source candles'+(rawStep!==targetStep?'; aggregated from '+(rawStep/60)+'-minute bars in UTC'+(interval==='W'?' Monday weeks':'')+'; gaps and truncated leading buckets are omitted; aggregated history is shorter':'')+'. The latest source candle may still be forming.'};
+  }
+  if(provider==='bitstamp'){
+   const base='https://www.bitstamp.net/api/v2/';
+   if(kind==='quote'){
+    const data=await json(base+'ticker/'+symbol+'/');
+    const has24=numeric(data.open_24)&&n(data.open_24)>0||numeric(data.percent_change_24);
+    return {...meta,...normalizeQuote(data.last,has24?data.open_24:data.open,has24?'rolling 24h':'since 00:00 UTC',numeric(data.timestamp)?timeMs(n(data.timestamp)*1000):null,has24?data.percent_change_24:undefined)};
+   }
+   if(kind==='book'){const data=await json(base+'order_book/'+symbol+'/');return {...meta,...normalizeBook(data,numeric(data.microtimestamp)?timeMs(n(data.microtimestamp)/1000):numeric(data.timestamp)?timeMs(n(data.timestamp)*1000):null)};}
+   if(kind==='trades'){
+    const rows=await json(base+'transactions/'+symbol+'/?time=hour');
+    return {...meta,...normalizeTrades(Array.isArray(rows)?rows.map(r=>({price:r.price,size:r.amount,time:r.date,side:String(r.type)==='0'?'b':String(r.type)==='1'?'s':''})):null)};
+   }
+   const rawStep=interval==='W'?86400:targetStep;
+   const data=await json(base+'ohlc/'+symbol+'/?'+new URLSearchParams({step:String(rawStep),limit:'1000'}));
+   if(data?.data?.pair)assertIdentity(data.data.pair,m);if(data?.data?.market)assertIdentity(data.data.market,m);
+   const rows=data?.data?.ohlc;if(!Array.isArray(rows))throw Error('Bitstamp returned no candle history.');
+   const native=clean(rows.map(r=>({t:r.timestamp,o:r.open,h:r.high,l:r.low,c:r.close,v:r.volume}))).slice(-1000),bars=aggregate(native,rawStep,targetStep,now);
+   if(bars.length<2)throw Error('Bitstamp returned fewer than two usable candles for this interval.');
+   return {...meta,bars,interval,historyNote:'Up to 1,000 Bitstamp source candles'+(interval==='W'?'; aggregated from daily bars into Monday UTC weeks; gaps/truncated leading buckets are omitted and history is shorter':'')+'. The latest source candle may still be forming.'};
+  }
+  const base=provider==='binance'?'https://data-api.binance.vision/api/v3/':'https://api.binance.us/api/v3/';
+  const endpoint={candles:'klines',quote:'ticker/24hr',book:'depth',trades:'trades'}[kind];
+  const params={symbol};if(kind==='candles'){params.interval=binanceSteps[interval];params.limit='1000';}if(kind==='book')params.limit='20';if(kind==='trades')params.limit='50';
+  const data=await json(url(base+endpoint,params));if(data?.symbol)assertIdentity(data.symbol,m);
+  if(kind==='quote')return {...meta,...normalizeQuote(data.lastPrice,null,'rolling 24h',numeric(data.closeTime)?timeMs(n(data.closeTime)):null,data.priceChangePercent)};
+  if(kind==='book')return {...meta,...normalizeBook(data,null)};
+  if(kind==='trades')return {...meta,...normalizeTrades(Array.isArray(data)?data.map(r=>({price:r.price,size:r.qty,time:n(r.time)/1000,side:r.isBuyerMaker===true?'s':r.isBuyerMaker===false?'b':''})):null)};
+  if(!Array.isArray(data))throw Error(data?.msg||'The source returned no candle history.');
+  const bars=clean(data.map(r=>({t:n(r[0])/1000,o:r[1],h:r[2],l:r[3],c:r[4],v:r[5]})));
+  if(bars.length<2)throw Error('The source returned fewer than two usable candles.');
+  return {...meta,bars,interval,historyNote:'Up to 1,000 '+names[provider]+' candles; the latest candle may still be forming.'};
+ }
+ return {request,market,supports,aggregate};
+})();
+/* CRYPTO_FEEDS_END */
 /* CHART_DATA_START */
 // Embedded verbatim in market-terminal.html; no runtime dependency on this file.
 const MarketData = (()=>{
@@ -428,7 +589,23 @@ const MarketData = (()=>{
   '60':{y:'60m',range:'3mo',seconds:3600,k:60,b:'1h'},'240':{y:'4h',range:'3mo',seconds:14400,k:240,b:'4h'},
   D:{y:'1d',range:'2y',seconds:86400,k:1440,b:'1d'},W:{y:'1wk',range:'5y',seconds:604800,k:10080,b:'1w'}
  };
- const relay='https://proxy.cors.dev/';
+ const defaults={maxSources:5,timeoutMs:4000,deadlineMs:18000,providers:['kraken','coinbase','bitstamp','binance','binance-us','yahoo','twelve'],stockTransports:['corsdev','allorigins','corslol'],twelveKey:''};
+ let settings=JSON.parse(JSON.stringify(defaults)),generation=0;
+ const active=new Set(),healthRecords=new Map(),cooldowns=new Map();
+ const providerNames={kraken:'Kraken',coinbase:'Coinbase Exchange',bitstamp:'Bitstamp',binance:'Binance','binance-us':'Binance.US',yahoo:'Yahoo Finance',twelve:'Twelve Data'};
+ const transportNames={corsdev:'cors.dev',allorigins:'AllOrigins',corslol:'cors.lol'};
+ function validateConfig(input){
+  const next={...defaults,...input};
+  for(const [key,min,max] of [['maxSources',1,20],['timeoutMs',500,10000],['deadlineMs',1000,25000]])if(!Number.isInteger(next[key])||next[key]<min||next[key]>max)throw Error(key+' must be an integer from '+min+' to '+max+'.');
+  for(const [key,known] of [['providers',providerNames],['stockTransports',transportNames]]){
+   if(!Array.isArray(next[key])||next[key].some(id=>typeof id!=='string'||!Object.hasOwn(known,id))||new Set(next[key]).size!==next[key].length)throw Error('Invalid or duplicate '+key+'.');
+  }
+  if(typeof next.twelveKey!=='string'||next.twelveKey.length>200||/[^A-Za-z0-9_-]/.test(next.twelveKey))throw Error('Invalid Twelve Data key.');
+  return {maxSources:next.maxSources,timeoutMs:next.timeoutMs,deadlineMs:next.deadlineMs,providers:[...next.providers],stockTransports:[...next.stockTransports],twelveKey:next.twelveKey};
+ }
+ function config(){return JSON.parse(JSON.stringify(settings));}
+ function aborted(){const error=Error('Market data request cancelled.');error.name='AbortError';return error;}
+ function configure(input){const next=validateConfig(input);generation++;for(const controller of active)controller.abort();settings=next;healthRecords.clear();cooldowns.clear();return config();}
  const firstCompanyBar={GFUZ:Date.parse('2026-07-13T00:00:00Z')/1000};
  const number=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v));
  function cleanBars(rows){
@@ -440,16 +617,19 @@ const MarketData = (()=>{
   const [exchange,ticker]=symbol.toUpperCase().split(':');
   if(exchange==='KRAKEN')return {type:'kraken',pair:ticker,symbol};
   if(exchange==='BINANCE')return {type:'binance',pair:ticker,symbol};
-  if(['NASDAQ','NYSE','AMEX','NYSEARCA'].includes(exchange))return {type:'yahoo',ticker:ticker.replace(/\./g,'-'),symbol};
+  if(['NASDAQ','NYSE','AMEX','NYSEARCA'].includes(exchange))return {type:'yahoo',exchange,ticker:ticker.replace(/\./g,'-'),symbol};
   const suffix={LSE:'.L',TSX:'.TO',TSXV:'.V',ASX:'.AX',XETR:'.DE',FWB:'.F',EPA:'.PA',AMS:'.AS',TSE:'.T',HKEX:'.HK'}[exchange];
-  if(suffix)return {type:'yahoo',ticker:(exchange==='HKEX'?ticker.padStart(4,'0'):ticker)+suffix,symbol};
-  if(['FX','FX_IDC','OANDA','FOREXCOM'].includes(exchange)&&/^[A-Z]{6}$/.test(ticker))return {type:'yahoo',ticker:ticker+'=X',symbol};
+  if(suffix)return {type:'yahoo',exchange,ticker:(exchange==='HKEX'?ticker.padStart(4,'0'):ticker)+suffix,symbol};
+  if(['FX','FX_IDC','OANDA','FOREXCOM'].includes(exchange)&&/^[A-Z]{6}$/.test(ticker))return {type:'yahoo',exchange,ticker:ticker+'=X',symbol};
   throw Error('No data adapter for '+exchange+'. Supported: US stocks, selected international exchanges, Kraken and Binance. Keep or remove this entry in Manage markets.');
  }
  function parseYahoo(payload,route,interval){
   if(payload?.chart?.error)throw Error(payload.chart.error.description||'The source could not find this symbol.');
   const result=payload?.chart?.result?.[0],meta=result?.meta,quote=result?.indicators?.quote?.[0];
   if(!meta||!quote||!Array.isArray(result.timestamp))throw Error('The stock source returned no usable price history.');
+  if(typeof meta.symbol!=='string'||meta.symbol.toUpperCase()!==route.ticker.toUpperCase())throw Error('Stock source returned a different instrument symbol.');
+  const returnedInterval=meta.dataGranularity==='1h'?'60m':meta.dataGranularity;
+  if(typeof returnedInterval==='string'&&returnedInterval!==intervals[interval]?.y)throw Error('Stock source returned a different candle interval.');
   let bars=cleanBars(result.timestamp.map((t,i)=>({t,o:quote.open?.[i],h:quote.high?.[i],l:quote.low?.[i],c:quote.close?.[i],v:quote.volume?.[i]})));
   const step=intervals[interval]?.seconds,last=bars[bars.length-1],previous=bars[bars.length-2];
   // Yahoo appends a latest-price point outside the regular intraday bar grid.
@@ -478,23 +658,137 @@ const MarketData = (()=>{
  }
  async function json(url,fetcher,signal){
   const response=await fetcher(url,{signal,credentials:'omit',referrerPolicy:'no-referrer'});
-  let data;try{data=await response.json();}catch{const error=Error(response.ok?'Market data returned an unreadable response.':'Market data HTTP '+response.status);error.status=response.status;throw error;}
-  if(!response.ok){const error=Error(data?.chart?.error?.description||data?.msg||'Market data HTTP '+response.status);error.status=response.status;throw error;}return data;
+  const gateway=response.headers?.get('X-Cors-Error'),retry=response.headers?.get('Retry-After');
+  let data;try{data=await response.json();}catch{const error=Error(response.ok?'Market data returned an unreadable response.':'Market data HTTP '+response.status);error.status=response.status;error.retryAfter=retry;error.gateway=gateway;throw error;}
+  const krakenRate=Array.isArray(data?.error)&&data.error.some(message=>/rate limit|throttled/i.test(message));
+  if(!response.ok||data?.status==='error'||krakenRate){
+   // Do not include a URL or user API key in errors/diagnostics.
+   const error=Error(gateway?'Relay '+gateway:krakenRate?'Kraken rate limit exceeded':data?.chart?.error?.description||data?.msg||data?.message||'Market data HTTP '+response.status);error.status=krakenRate?429:Number(data?.code)||response.status;error.retryAfter=retry;error.gateway=gateway;throw error;
+  }return data;
  }
- async function request(m,interval,{fetcher=fetch,signal}={}){
-  const config=intervals[interval];if(!config)throw Error('Unsupported chart interval.');
+ function candidates(m,kind,interval){
   const route=routeSymbol(m.symbol);
-  if(route.type==='kraken'){route.pair=m.pair||route.pair;return parseKraken(await json('https://api.kraken.com/0/public/OHLC?'+new URLSearchParams({pair:route.pair,interval:String(config.k)}),fetcher,signal),route,interval);}
-  if(route.type==='binance')return parseBinance(await json('https://data-api.binance.vision/api/v3/klines?'+new URLSearchParams({symbol:route.pair,interval:config.b,limit:'1000'}),fetcher,signal),route,interval);
-  let lastError;
-  for(const host of ['query1.finance.yahoo.com','query2.finance.yahoo.com']){
-   if(signal?.aborted)throw Error('Chart request cancelled.');
-   try{return parseYahoo(await json(relay+'https://'+host+'/v8/finance/chart/'+encodeURIComponent(route.ticker)+'?'+new URLSearchParams({interval:config.y,range:config.range,includePrePost:'false',events:'splits'}),fetcher,signal),route,interval);}
-   catch(error){lastError=error;if(error.status===404||signal?.aborted)break;}
+  if(route.type==='kraken'||route.type==='binance'){
+   const market=CryptoFeeds.market(route,m),order=[route.type,...settings.providers.filter(id=>id!==route.type)];
+   return order.filter(id=>settings.providers.includes(id)&&CryptoFeeds.supports(id,market,kind,interval)).map(provider=>({id:provider,scope:provider,provider,transport:'direct',label:providerNames[provider],route,market}));
   }
-  throw lastError||Error('The stock data source is unavailable.');
+  if(kind!=='candles')return [];
+  const result=[];
+  for(const provider of settings.providers){
+   if(provider==='yahoo')for(const transport of settings.stockTransports)for(const host of ['query1.finance.yahoo.com','query2.finance.yahoo.com']){const id='yahoo-'+transport+'-'+host.split('.')[0];result.push({id,scope:id,provider,transport,label:'Yahoo Finance · '+transportNames[transport]+' · '+host.split('.')[0],host,route});}
+   if(provider==='twelve'&&settings.twelveKey&&(['NASDAQ','NYSE','AMEX','NYSEARCA'].includes(route.exchange)||route.ticker.endsWith('=X')))result.push({id:'twelve',scope:'twelve',provider,transport:'direct',label:'Twelve Data',route});
+  }
+  // Try independent providers before spending the remaining budget on mirrors.
+  const first=[],rest=[],seen=new Set();
+  for(const candidate of result){if(seen.has(candidate.provider))rest.push(candidate);else{seen.add(candidate.provider);first.push(candidate);}}
+  return [...first,...rest];
  }
- return {request,routeSymbol,parseYahoo,parseKraken,parseBinance,cleanBars,intervals};
+ function coverage(m,interval='D'){const result={};for(const kind of ['candles','quote','book','trades'])result[kind]=candidates(m,kind,interval).map(({id,label,provider,transport})=>({id,label,provider,transport}));return result;}
+ function localTimestamp(value,zone='UTC'){
+  if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}( \d{2}:\d{2}:\d{2})?$/.test(value))return NaN;
+  const desired=Date.parse(value.replace(' ','T')+(value.length===10?'T00:00:00Z':'Z'));let time=desired;
+  for(let i=0;i<3;i++){
+   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date(time));
+   const p=Object.fromEntries(parts.map(x=>[x.type,x.value]));const represented=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second);time+=desired-represented;
+  }
+  return time/1000;
+ }
+ function twelveExchangeMatches(meta,route){
+  const expected={NASDAQ:'NASDAQ',NYSE:'NYSE',AMEX:'AMEX',NYSEARCA:'NYSE ARCA'}[route.exchange];
+  const mic={NASDAQ:['XNAS','XNGS','XNMS','XNCM'],NYSE:['XNYS'],AMEX:['XASE'],NYSEARCA:['ARCX']}[route.exchange]||[];
+  return !expected||String(meta.exchange).toUpperCase()===expected||mic.includes(meta.mic_code);
+ }
+ function parseTwelve(payload,route,interval){
+  const fx=route.ticker.endsWith('=X'),symbol=fx?route.ticker.slice(0,3)+'/'+route.ticker.slice(3,6):route.symbol?.split(':')[1]||route.ticker;
+  const meta=payload?.meta;
+  if(payload?.status!=='ok'||!meta||meta.symbol?.toUpperCase()!==symbol.toUpperCase()||!Array.isArray(payload.values))throw Error('Twelve Data returned a different or unavailable instrument.');
+  if(!fx&&!twelveExchangeMatches(meta,route))throw Error('Twelve Data returned a different stock exchange.');
+  const native={'1':'1min','5':'5min','15':'15min','30':'30min','60':'1h','240':'4h',D:'1day',W:'1week'}[interval];
+  if(meta.interval!==native)throw Error('Twelve Data returned a different candle interval.');
+  const zone=intervals[interval].seconds<86400?'UTC':meta.exchange_timezone|| (fx?'UTC':null);
+  if(!zone)throw Error('Twelve Data did not identify the exchange timezone.');
+  const bars=cleanBars(payload.values.map(r=>({t:localTimestamp(r.datetime,zone),o:r.open,h:r.high,l:r.low,c:r.close,v:r.volume??0}))).filter(b=>!firstCompanyBar[route.ticker]||b.t>=firstCompanyBar[route.ticker]);
+  if(bars.length<2)throw Error('Twelve Data returned fewer than two usable candles.');
+  return {bars,currency:fx?symbol.slice(-3):meta.currency||'',provider:'twelve',source:'Twelve Data',sourceSymbol:symbol,interval,delayMinutes:null,quote:bars[bars.length-1].c,quoteTime:null,historyNote:'Candle closes, not a timestamped current quote. Plan coverage and history limits apply. Daily/weekly labels use exchange-local midnight; intraday labels use UTC.'};
+ }
+ async function readCandidate(candidate,m,kind,interval,fetcher,signal,requireQuote=false){
+  const io={json:url=>json(url,fetcher,signal)};
+  if(candidate.market)return CryptoFeeds.request(candidate.provider,kind,candidate.market,interval,io);
+  const route=candidate.route;
+  if(candidate.provider==='twelve'){
+   const symbol=route.ticker.endsWith('=X')?route.ticker.slice(0,3)+'/'+route.ticker.slice(3,6):route.symbol?.split(':')[1]||route.ticker;
+   const query=new URLSearchParams({symbol,interval:{'1':'1min','5':'5min','15':'15min','30':'30min','60':'1h','240':'4h',D:'1day',W:'1week'}[interval],outputsize:'1000',order:'asc',timezone:'UTC',adjust:'splits',prepost:'false',apikey:settings.twelveKey});
+   if(!route.ticker.endsWith('=X'))query.set('exchange',{NYSEARCA:'NYSE ARCA'}[route.exchange]||route.exchange);
+   const result=parseTwelve(await io.json('https://api.twelvedata.com/time_series?'+query),route,interval);
+   // Hourly alarm snapshots need a real quote timestamp, not a fabricated bar-close time.
+   if(requireQuote){
+    const quoteQuery=new URLSearchParams({symbol,apikey:settings.twelveKey,prepost:'false'});if(query.has('exchange'))quoteQuery.set('exchange',query.get('exchange'));
+    try{
+     const quote=await io.json('https://api.twelvedata.com/quote?'+quoteQuery),sameExchange=route.ticker.endsWith('=X')||twelveExchangeMatches(quote,route);
+     if(quote.symbol?.toUpperCase()!==symbol.toUpperCase()||!sameExchange||quote.currency&&quote.currency!==result.currency||!number(quote.timestamp)||Number(quote.timestamp)<=0||Number(quote.timestamp)>Date.now()/1000+60||!number(quote.close)||Number(quote.close)<=0)throw Error('No matching timestamped quote.');
+     result.quote=Number(quote.close);result.quoteTime=Number(quote.timestamp);result.historyNote=result.historyNote.replace('Candle closes, not a timestamped current quote.','Historical candles and a matching timestamped quote.');result.historyNote+=' The headline quote and alarm timestamp are supplied by the same provider.';
+    }catch{result.historyNote+=' A matching timestamped quote was unavailable; alarms wait for one.';}
+   }
+   return result;
+  }
+  const target='https://'+candidate.host+'/v8/finance/chart/'+encodeURIComponent(route.ticker)+'?'+new URLSearchParams({interval:intervals[interval].y,range:intervals[interval].range,includePrePost:'false',events:'splits'});
+  const url=candidate.transport==='corsdev'?'https://proxy.cors.dev/'+target:candidate.transport==='allorigins'?'https://api.allorigins.win/raw?url='+encodeURIComponent(target):'https://api.cors.lol/?url='+encodeURIComponent(target);
+  const result=parseYahoo(await io.json(url),route,interval);result.source='Yahoo Finance via '+transportNames[candidate.transport]+' · '+candidate.host.split('.')[0];return result;
+ }
+ function timeoutAttempt(fn,parent,ms){
+  const controller=new AbortController();let timer,onAbort;
+  const interruption=new Promise((resolve,reject)=>{
+   onAbort=()=>{controller.abort();reject(aborted());};parent.addEventListener('abort',onAbort,{once:true});
+   timer=setTimeout(()=>{controller.abort();const error=Error('Source timed out.');error.timeout=true;reject(error);},ms);
+  });
+  return Promise.race([Promise.resolve().then(()=>{if(parent.aborted)throw aborted();return fn(controller.signal);}),interruption]).finally(()=>{clearTimeout(timer);parent.removeEventListener('abort',onAbort);});
+ }
+ async function run(m,kind,interval,{fetcher=fetch,signal,budgetMs,requireQuote=false}={}){
+  if(kind==='candles'&&!intervals[interval])throw Error('Unsupported chart interval.');
+  if(signal?.aborted)throw aborted();
+  const list=candidates(m,kind,interval);
+  const currentGeneration=generation,controller=new AbortController(),cancel=()=>controller.abort();signal?.addEventListener('abort',cancel,{once:true});active.add(controller);
+  const started=Date.now(),deadline=started+Math.min(settings.deadlineMs,budgetMs||settings.deadlineMs),attempts=[],blockedProviders=new Set();
+  try{
+   if(!list.length)throw Error('No enabled compatible source for '+m.symbol+' '+kind+'. Check Data sources settings and coverage.');
+   for(const candidate of list){
+    if(controller.signal.aborted||generation!==currentGeneration)throw aborted();
+    const marketKey=candidate.id+'|'+m.symbol+'|'+kind+(requireQuote?':quote':'')+'|'+interval;
+    if(blockedProviders.has(candidate.provider)||Math.max(cooldowns.get('policy:'+candidate.provider)||0,cooldowns.get(candidate.scope)||0,cooldowns.get('transport:'+candidate.transport)||0,cooldowns.get(marketKey)||0)>Date.now())continue;
+    if(attempts.length>=settings.maxSources||Date.now()>=deadline)break;
+    try{
+     const result=await timeoutAttempt(child=>readCandidate(candidate,m,kind,interval,fetcher,child,requireQuote),controller.signal,Math.max(1,Math.min(settings.timeoutMs,deadline-Date.now())));
+     if(controller.signal.aborted||generation!==currentGeneration)throw aborted();
+     if(requireQuote&&!candidate.market&&(!Number.isFinite(result.quoteTime)||result.quoteTime<=0||!Number.isFinite(result.quote)||result.quote<=0))throw Error('This source lacks the timestamped quote required for alarms.');
+     const receivedAt=Date.now(),fallbackUsed=candidate.id!==list[0].id||attempts.length>0;
+     if(candidate.market&&['quote','book'].includes(kind)&&result.observedAt!==null&&result.observedAt!==undefined&&(!Number.isFinite(result.observedAt)||result.observedAt>receivedAt+60000||receivedAt-result.observedAt>120000))throw Error('The source observation is stale or invalid.');
+     healthRecords.set(candidate.id,{id:candidate.id,label:candidate.label,lastError:'',lastSuccessAt:receivedAt,cooldownUntil:0});
+     return {...result,requestedSymbol:m.symbol,marketType:candidate.market?'crypto':candidate.route.ticker.endsWith('=X')?'fx':'stock',transport:candidate.transport,source:result.source||candidate.label,receivedAt,fallbackUsed,sourceId:candidate.id,attempts:[...attempts,{id:candidate.id,status:'ok'}]};
+    }catch(error){
+     if(controller.signal.aborted||generation!==currentGeneration)throw aborted();
+     const rawMessage=String(error.message||'Source unavailable');
+     const message=settings.twelveKey?rawMessage.split(settings.twelveKey).join('[redacted]'):rawMessage;
+     attempts.push({id:candidate.id,status:'failed',httpStatus:error.status,error:message});
+     const rawRetry=error.retryAfter,seconds=rawRetry!==null&&rawRetry!==undefined&&/^\d+(\.\d+)?$/.test(rawRetry)?Number(rawRetry):null;
+     const retryUntil=seconds!==null?Date.now()+seconds*1000:rawRetry?Date.parse(rawRetry):NaN;
+     const until=Number.isFinite(retryUntil)?Math.max(Date.now()+1000,retryUntil):Date.now()+(error.status===429?60000:30000);
+     const relayWide=['rate_limited','quota_exceeded','service_unavailable'].includes(error.gateway)&&candidate.transport!=='direct';
+     const scope=relayWide?'transport:'+candidate.transport:error.status===404||(!error.status&&!error.timeout&&error.name!=='TypeError')?marketKey:candidate.scope;
+     cooldowns.set(scope,until);healthRecords.set(candidate.id,{id:candidate.id,label:candidate.label,lastError:message,lastSuccessAt:healthRecords.get(candidate.id)?.lastSuccessAt||0,cooldownUntil:until,policyBlocked:error.gateway==='owner_opted_out'});
+     if(error.status===404||error.gateway==='owner_opted_out')blockedProviders.add(candidate.provider);
+     if(error.gateway==='owner_opted_out')cooldowns.set('policy:'+candidate.provider,Infinity);
+    }
+   }
+   const detail=attempts.length?attempts.map(x=>x.id+': '+x.error).join('; '):'Compatible sources are cooling down; retry after the reported delay.';
+   const error=Error('Market data unavailable ('+attempts.length+'/'+Math.min(settings.maxSources,list.length)+' source attempts). '+detail);error.attempts=attempts;error.status=attempts[attempts.length-1]?.httpStatus;throw error;
+  }finally{active.delete(controller);signal?.removeEventListener('abort',cancel);}
+ }
+ const request=(m,interval,options)=>run(m,'candles',interval,options);
+ const quote=(m,options)=>run(m,'quote','D',options);
+ const book=(m,options)=>run(m,'book','D',options);
+ const trades=(m,options)=>run(m,'trades','D',options);
+ function health(){return [...healthRecords.values()].map(row=>({...row}));}
+ return {request,quote,book,trades,coverage,configure,config,validateConfig,health,defaults,routeSymbol,parseYahoo,parseKraken,parseBinance,parseTwelve,cleanBars,intervals};
 })();
 /* CHART_DATA_END */
 // Captured before any widgets or live values are added. A downloaded copy remains a single clean file.
@@ -606,8 +900,8 @@ function renderList(){
 }
 function renderQuote(){
  const m=current(),q=quotes[m.ticker];
- if(!m.crypto){const data=chartData?.key===m.id+'|'+state.interval?chartData:null;const value=data?(data.quote??data.bars[data.bars.length-1].c):null;$('assetPrice').textContent=value===null?m.ticker:price(value);$('assetChange').className='quote-meta';$('assetChange').textContent=data?`${data.currency||'PRICE'} · ${chartFailure||Date.now()-data.receivedAt>90000?'STALE · ':''}snapshot ${timeUTC(data.receivedAt)} UTC`:chartFailure?'Chart data unavailable':'Waiting for chart candles';return;}
- $('assetPrice').textContent=q?'$'+price(q.last):'—';$('assetChange').className=q&&isFresh(q)?(q.change>=0?'up':'down'):'muted';$('assetChange').textContent=q?(isFresh(q)?`${change(q.change)} · since 00:00 UTC`:`Stale quote · ${timeUTC(q.at)} UTC`):(lastQuoteAttempt&&!quoteBusy?'Kraken quote unavailable · retry with reload':'Waiting for Kraken quote');
+ if(!m.crypto){const data=chartData?.key===m.id+'|'+state.interval?chartData:null;const value=data?(data.quote??data.bars[data.bars.length-1].c):null;$('assetPrice').textContent=value===null?m.ticker:price(value);$('assetChange').className='quote-meta';$('assetChange').textContent=data?`${data.currency||'PRICE'}${data.provider==='twelve'&&!data.quoteTime?' · candle close':''} · ${chartFailure||Date.now()-data.receivedAt>90000?'STALE · ':''}snapshot ${timeUTC(data.receivedAt)} UTC`:chartFailure?'Chart data unavailable':'Waiting for chart candles';return;}
+ $('assetPrice').textContent=q?'$'+price(q.last):'—';$('assetChange').className=q&&isFresh(q)?(q.change>=0?'up':'down'):'muted';$('assetChange').textContent=q?(isFresh(q)?`${change(q.change)} · ${q.changeBasis||'since 00:00 UTC'} · ${q.venue||'Kraken'}${q.fallbackUsed?' · FALLBACK':''}`:`Stale quote · ${timeUTC(q.at)} UTC`):(lastQuoteAttempt&&!quoteBusy?'Compatible quote sources unavailable · retry with reload':'Waiting for exchange quote');
 }
 function renderFeedTiming(m){
  const badge=$('chartFeedBadge'),detail=$('chartFeedDetail');
@@ -615,8 +909,8 @@ function renderFeedTiming(m){
  const exchange=route?.type==='kraken'||route?.type==='binance',delay=data?.delayMinutes;
  badge.dataset.timing=exchange?'snapshot':typeof delay==='number'&&delay>0?'delayed':'unknown';badge.className='data-badge '+(exchange?'realtime':badge.dataset.timing);
  badge.textContent=exchange?'EXCHANGE SNAPSHOTS':typeof delay==='number'?delay+' MIN REPORTED DELAY':'DELAY UNSPECIFIED';
- const source=data?.source||(route?.type==='kraken'?'Kraken public OHLC':route?.type==='binance'?'Binance public candles':route?.type==='yahoo'?'Yahoo Finance via public relay':'No supported data adapter');
- detail.textContent=source+' · chart '+chartRefreshMs(m)/1000+'s'+(m.crypto?' · quotes 20s · book/trades 10s':'')+(data?' · fetched '+timeUTC(data.receivedAt)+' UTC':' · waiting for candles');
+ const source=data?.source||(route?.type==='kraken'?'Crypto source chain':route?.type==='binance'?'Crypto source chain':route?.type==='yahoo'?'Stock source chain':'No supported data adapter');
+ detail.textContent=source+(data?.fallbackUsed?' · FALLBACK':'')+' · chart '+chartRefreshMs(m)/1000+'s'+(m.crypto?' · quotes 20s · book/trades 10s':'')+(data?' · fetched '+timeUTC(data.receivedAt)+' UTC':' · waiting for candles');
  $('chartFeedTiming').title=(exchange?'Candles are periodic public exchange snapshots.':'The stock/currency source may be delayed; no exact latency is assumed unless metadata supplies it.')+(data?' Last candle opens '+new Date(data.bars[data.bars.length-1].t*1000).toISOString()+'. '+(data.historyNote||''):'')+' Refresh cadence does not guarantee source freshness.';
 }
 function renderMarketDetails(m){
@@ -742,7 +1036,7 @@ function undoChartAction(showEmpty=false){
 }
 function handleChartKeyDown(e){
  const active=document.activeElement,editing=['INPUT','TEXTAREA','SELECT'].includes(active?.tagName)||active?.isContentEditable;
- const openDialog=['alertsDialog','indicatorDialog','marketsDialog','aboutDialog'].find(id=>$(id).open);
+ const openDialog=['feedsDialog','alertsDialog','indicatorDialog','marketsDialog','aboutDialog'].find(id=>$(id).open);
  if(e.key==='Escape'){
   if(openDialog){e.preventDefault();$(openDialog).close();return;}
   if($('app').classList.contains('drawer-open')){e.preventDefault();closeDrawer();return;}
@@ -777,7 +1071,12 @@ $('futureSpace').onchange=()=>{state.futureSpace=Number($('futureSpace').value);
 document.addEventListener('pointerup',e=>{if(e.target.closest?.('#chartHost')){rememberChartWorkspace(true);updateDrawingStatus();}});
 window.addEventListener('pagehide',()=>rememberChartWorkspace(true));
 $('chartScale').onchange=()=>chartEngine?.setScale($('chartScale').value);
-$('saveChartImage').onclick=()=>{if(!chartData)return;const a=document.createElement('a');a.href=chartEngine.toDataURL();a.download=current().ticker+'-chart.png';document.body.append(a);a.click();a.remove();};
+$('saveChartImage').onclick=()=>{
+ if(!chartData)return;
+ const data=chartEngine.toDataURL(),encoded=data.split(',')[1];if(!data.startsWith('data:image/png;base64,')||!encoded)return;
+ const bytes=Uint8Array.from(atob(encoded),character=>character.charCodeAt(0)),url=URL.createObjectURL(new Blob([bytes],{type:'image/png'}));
+ const a=document.createElement('a');a.href=url;a.download=current().ticker+'-chart.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+};
 /* CHART_CONTROLLER_END */
 /* ALERT_CONTROLLER_START */
 // Embedded alongside the app. Monitoring is page-owned; no service or account.
@@ -800,11 +1099,11 @@ function alertsBackup(){return validateAlertStore(alertState);}
 function restoreAlerts(input){alertState=validateAlertStore(input);alertConfigVersion++;alertStatuses.clear();saveAlerts();renderAlerts();}
 function alertDescription(rule){return rule.type==='swing'?`${rule.direction==='either'?'Either direction':rule.direction==='up'?'Rise':'Fall'} ≥ ${rule.threshold}% / ${rule.windowHours}h`:`Price ${rule.type==='above'?'≥':'≤'} ${rule.threshold}`;}
 function alertMessage(text,error=false){$('alertsMessage').textContent=text;$('alertsMessage').className='manager-status'+(error?' error':'');}
-function alertSourceText(data){return data.provider==='yahoo'?(typeof data.delayMinutes==='number'?data.delayMinutes+' min reported delay':'delay unspecified'):'exchange snapshots; latency unspecified';}
+function alertSourceText(data){return data.marketType==='crypto'||['kraken','coinbase','bitstamp','binance','binance-us'].includes(data.provider)?'exchange snapshots; latency unspecified':(typeof data.delayMinutes==='number'?data.delayMinutes+' min reported delay':'delay unspecified');}
 function alertSnapshot(data,receivedAt=Date.now()){
  const last=data.bars?.[data.bars.length-1];if(!last)throw Error('No hourly candles returned.');
  let at,priceValue;
- if(data.provider==='yahoo'){
+ if(data.marketType==='stock'||data.marketType==='fx'||data.provider==='yahoo'||data.provider==='twelve'){
   if(!Number.isFinite(data.quoteTime)||!Number.isFinite(data.quote)||data.quote<=0)throw Error('The source did not supply a quote timestamp; alarm evaluation is waiting.');
   at=data.quoteTime*1000;priceValue=data.quote;
  }else{
@@ -868,8 +1167,9 @@ async function refreshAlerts(force=false){
  const worker=async()=>{while(next<symbols.length){const symbol=symbols[next++];if(version!==alertConfigVersion||alertState.paused)break;
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
   try{
-   const market=MARKETS.find(m=>m.id===symbol),cache=alertFeedCache.get(symbol)||chartCache.get(symbol+'|60');
-   const data=cache&&Date.now()-cache.receivedAt<55000?cache:{...await MarketData.request(market,'60',{signal:controller.signal}),receivedAt:Date.now()};
+   const market=MARKETS.find(m=>m.id===symbol),cache=alertFeedCache.get(symbol)||chartCache.get(symbol+'|60'),requireQuote=MarketData.routeSymbol(symbol).type==='yahoo';
+   const cacheUsable=cache&&Date.now()-cache.receivedAt<55000&&(!requireQuote||Number.isFinite(cache.quoteTime)&&cache.quoteTime>0&&Number.isFinite(cache.quote)&&cache.quote>0);
+   const data=cacheUsable?cache:{...await MarketData.request(market,'60',{signal:controller.signal,budgetMs:19000,requireQuote}),receivedAt:Date.now()};
    alertFeedCache.set(symbol,data);if(alertFeedCache.size>20)alertFeedCache.delete(alertFeedCache.keys().next().value);
    const receivedAt=data.receivedAt||Date.now(),snapshot=alertSnapshot(data,receivedAt);
    if(version!==alertConfigVersion||alertState.paused||!MARKETS.some(m=>m.id===symbol))continue;
@@ -913,27 +1213,110 @@ $('enableAlertNotifications').onclick=async()=>{try{if(typeof Notification==='un
 $('testAlarm').onclick=()=>{const now=Date.now(),event={id:'test-'+now,symbol:current().symbol,label:'Test alarm',text:'Test alarm: in-page banner, history and selected delivery options.',at:now,sourceAt:now,price:1,source:'Local test · no market condition',delay:'not market data',test:true};persistAlertEvent(event);alertMessage('Test alarm recorded. This did not evaluate a market condition.');deliverAlert(event);};
 /* ALERT_CONTROLLER_END */
 function setTicker(ticker){const m=findMarket(ticker);if(!m)return;if(m.id===state.ticker){closeDrawer();return;}state.ticker=m.id;marketVersion++;detailController?.abort();detailBusy=false;book=null;renderSelection();resetDetails();loadChart();save();closeDrawer();if(current().crypto)refreshDetails();}
-async function kraken(endpoint,params,signal){
- const response=await fetch(`https://api.kraken.com/0/public/${endpoint}?${new URLSearchParams(params)}`,{signal,credentials:'omit',referrerPolicy:'no-referrer'});if(!response.ok)throw Error(`Kraken HTTP ${response.status}`);const data=await response.json();if(!Array.isArray(data.error)||data.error.length||!data.result)throw Error('Kraken response unavailable');return data.result;
+/* FEED_CONTROLLER_START */
+// Embedded inside the application closure. Feed credentials never enter catalog exports.
+const FEED_STORAGE_KEY='market-terminal-feeds-v1';
+const FEED_PROVIDER_OPTIONS=[['kraken','Kraken'],['coinbase','Coinbase Exchange'],['bitstamp','Bitstamp'],['binance','Binance'],['binance-us','Binance.US'],['yahoo','Yahoo Finance'],['twelve','Twelve Data (optional key)']];
+const FEED_TRANSPORT_OPTIONS=[['corsdev','cors.dev'],['allorigins','AllOrigins'],['corslol','cors.lol']];
+let feedStorageIssue='',feedSettingsReady=false;
+function readFeedSettings(){return MarketData.config();}
+function feedSafeText(value){
+ let text=String(value??'');const key=MarketData.config().twelveKey;
+ if(key)text=text.split(key).join('[redacted]');
+ return escapeHTML(text);
 }
+function fillFeedSettings(config=readFeedSettings()){
+ $('feedMaxSources').value=String(config.maxSources);$('feedTimeout').value=String(config.timeoutMs/1000);
+ if($('feedDeadline'))$('feedDeadline').value=String(config.deadlineMs/1000);
+ $('feedTwelveKey').value=config.twelveKey;
+ $('feedProviders').innerHTML=FEED_PROVIDER_OPTIONS.map(([id,label])=>`<label><input type="checkbox" data-feed-provider="${id}" ${config.providers.includes(id)?'checked':''}> ${label}</label>`).join('');
+ $('feedTransports').innerHTML=FEED_TRANSPORT_OPTIONS.map(([id,label])=>`<label><input type="checkbox" data-feed-transport="${id}" ${config.stockTransports.includes(id)?'checked':''}> ${label}</label>`).join('');
+}
+function feedFormSettings(){
+ const before=readFeedSettings(),selected=(selector,key)=>{
+  const enabled=Array.from(document.querySelectorAll(selector)).filter(node=>node.checked).map(node=>node.dataset[key]);
+  return [...before[key==='feedProvider'?'providers':'stockTransports'].filter(id=>enabled.includes(id)),...enabled.filter(id=>!before[key==='feedProvider'?'providers':'stockTransports'].includes(id))];
+ };
+ return {...before,maxSources:Number($('feedMaxSources').value),timeoutMs:Number($('feedTimeout').value)*1000,deadlineMs:$('feedDeadline')?Number($('feedDeadline').value)*1000:before.deadlineMs,providers:selected('input[data-feed-provider]','feedProvider'),stockTransports:selected('input[data-feed-transport]','feedTransport'),twelveKey:$('feedTwelveKey').value.trim()};
+}
+function renderFeedSettingsStatus(){
+ const config=readFeedSettings(),m=current();
+ $('feedStatus').textContent=feedStorageIssue||`Up to ${config.maxSources} compatible paths per request · ${config.timeoutMs/1000}s per attempt · ${config.deadlineMs/1000}s total. Relays and mirrors are paths, not independent data providers.`;
+ if(m){
+  let coverage;
+  try{coverage=MarketData.coverage(m,state.interval);}catch(error){$('feedCoverage').innerHTML=`<p class="fine">${feedSafeText(error.message||'Coverage unavailable.')}</p>`;}
+  if(coverage){
+   const rows=[['candles','Candles'],['quote','Quotes'],['book','Order book / depth'],['trades','Recent trades']].map(([key,label])=>{
+    const paths=coverage[key]||[],providers=new Set(paths.map(path=>path.provider)),active=paths.slice(0,config.maxSources);
+    return `<p><strong>${label}:</strong> ${paths.length} compatible path${paths.length===1?'':'s'} / ${providers.size} independent provider${providers.size===1?'':'s'}; up to ${active.length} tried.<br><span class="fine">${paths.length?paths.map(path=>feedSafeText(path.label||path.id)).join(' → '):'No compatible enabled source.'}</span></p>`;
+   }).join('');
+   $('feedCoverage').innerHTML=`<p><strong>${feedSafeText(m.symbol)}</strong> · ${feedSafeText(state.interval)} chart interval</p>${rows}<p class="fine">A requested source count cannot add unsupported markets, intervals or currencies. Stock relays still use the same Yahoo data provider; an enabled optional stock provider needs its own key. Surrounding quote, book and trade panels are enabled only for starter crypto; other markets retain their chart and its quote.</p>`;
+  }
+ }
+ const health=MarketData.health(),now=Date.now();
+ $('feedHealth').innerHTML=health.length?health.map(item=>`<p><strong>${feedSafeText(item.label||item.id)}</strong> · ${item.policyBlocked?'blocked by upstream owner for this configuration':item.cooldownUntil>now?'cooling down for '+Math.ceil((item.cooldownUntil-now)/1000)+'s':item.lastSuccessAt?'available after a successful request':'not currently cooling down'}${item.lastError?'<br><span class="fine">'+feedSafeText(item.lastError)+'</span>':''}</p>`).join(''):'<p class="fine">No source failures or recovery checks recorded in this tab.</p>';
+}
+function openFeedSettings(){
+ fillFeedSettings();$('feedError').textContent='';renderFeedSettingsStatus();$('feedsDialog').showModal();
+}
+function applyFeedSettings(input){
+ // Validate before touching requests, caches, browser storage or the active settings.
+ const checked=MarketData.validateConfig(input);
+ MarketData.configure(checked);
+ chartVersion++;marketVersion++;
+ if(typeof alertConfigVersion!=='undefined')alertConfigVersion++;
+ chartController?.abort();detailController?.abort();quoteController?.abort();
+ chartBusy=false;detailBusy=false;quoteBusy=false;
+ chartCache.clear();alertFeedCache.clear();
+ if(typeof rememberChartWorkspace==='function')rememberChartWorkspace(true);
+ if(typeof chartData!=='undefined')chartData=null;
+ if(typeof quotes!=='undefined')quotes={};
+ if(typeof book!=='undefined')book=null;
+ if(typeof tapeAt!=='undefined')tapeAt=0;
+ if(typeof resetDetails==='function')resetDetails();
+ try{localStorage.setItem(FEED_STORAGE_KEY,JSON.stringify(checked));feedStorageIssue='';}
+ catch{feedStorageIssue='Feed settings apply in this tab, but browser storage is unavailable. Your optional key and source choices were not saved.';}
+ $('feedError').textContent='';fillFeedSettings(checked);renderFeedSettingsStatus();
+ const tasks=[()=>loadChart(true),()=>refreshQuotes(),()=>refreshAlerts(true)];
+ if(current()?.crypto)tasks.push(()=>refreshDetails());
+ Promise.allSettled(tasks.map(task=>Promise.resolve().then(task))).then(()=>{if($('feedsDialog').open)renderFeedSettingsStatus();});
+ toast(feedStorageIssue?'Feed settings applied for this tab only.':'Feed settings saved. Checking configured sources.');
+ return readFeedSettings();
+}
+function initFeedSettings(){
+ if(feedSettingsReady)return;feedSettingsReady=true;
+ try{
+  const raw=localStorage.getItem(FEED_STORAGE_KEY);
+  if(raw)MarketData.configure(MarketData.validateConfig(JSON.parse(raw)));
+ }catch{feedStorageIssue='Saved feed settings could not be read. Default sources are active; apply settings to save a replacement.';}
+ $('feedSettingsBtn').onclick=openFeedSettings;$('closeFeeds').onclick=()=>$('feedsDialog').close();
+ $('feedsForm').onsubmit=e=>{e.preventDefault();try{applyFeedSettings(feedFormSettings());}catch(error){$('feedError').textContent=String(error.message||'Invalid feed settings.');}};
+ $('resetFeeds').onclick=()=>{try{applyFeedSettings(MarketData.defaults);}catch(error){$('feedError').textContent=String(error.message||'Feed defaults could not be applied.');}};
+}
+/* FEED_CONTROLLER_END */
 function resetDetails(){
  tapeAt=0;
- $('bookStatus').textContent='KRAKEN · Waiting for snapshot';$('bookBody').innerHTML='<div class="book-empty">Connecting to the public order book…</div>';$('tradeBody').innerHTML='<div class="book-empty">Waiting for trades…</div>';$('depthChart').replaceChildren();$('tapeStatus').textContent='Public exchange snapshots · refresh every 10s';
+ $('bookStatus').textContent='Waiting for compatible source';$('bookBody').innerHTML='<div class="book-empty">Connecting to the public order book…</div>';$('tradeBody').innerHTML='<div class="book-empty">Waiting for trades…</div>';$('depthChart').replaceChildren();$('tradeVenue').textContent='Public feeds';$('tapeStatus').textContent='Public exchange snapshots · refresh every 10s';
 }
 function feedStatus(){
- const fresh=Object.values(quotes).some(isFresh);$('connection').innerHTML=`<i class="dot ${fresh?'up':''}"></i>${fresh?'SNAPSHOTS':'FEED UNAVAILABLE'}`;$('footerFeed').innerHTML=`<i class="dot ${fresh?'up':''}"></i>${fresh?'Kraken snapshots':'Kraken unavailable'}`;
+ const fresh=Object.values(quotes).some(isFresh),chartFresh=chartData&&!chartFailure&&Date.now()-chartData.receivedAt<90000;
+ $('connection').innerHTML=`<i class="dot ${fresh||chartFresh?'up':''}"></i>${fresh||chartFresh?'SNAPSHOTS':'FEED UNAVAILABLE'}`;
+ const sources=[...new Set(Object.values(quotes).filter(isFresh).map(q=>q.venue||'Public exchange'))];$('footerFeed').innerHTML=`<i class="dot ${fresh||chartFresh?'up':''}"></i>${escapeHTML(sources.length?sources.join(' / ')+' snapshots':chartFresh?chartData.source:'Public feeds unavailable')}`;
 }
 async function refreshQuotes(){
  if(quoteBusy)return;quoteBusy=true;lastQuoteAttempt=Date.now();quoteController=new AbortController();const timeout=setTimeout(()=>quoteController.abort(),12000);
- try{const result=await kraken('Ticker',{pair:'XBTUSD,ETHUSD,BNBUSD'},quoteController.signal);const aliases={BTC:['XXBTZUSD','XBTUSD'],ETH:['XETHZUSD','ETHUSD'],BNB:['BNBUSD']};for(const [ticker,keys] of Object.entries(aliases)){const row=keys.map(k=>result[k]).find(Boolean);if(!row)continue;const last=Number(row.c?.[0]),open=Number(row.o);if(!Number.isFinite(last)||last<=0||!Number.isFinite(open)||open<=0)continue;quotes[ticker]={last,change:(last-open)/open*100,at:Date.now()};}}
+ const controller=quoteController;
+ try{const markets=MARKETS.filter(m=>m.crypto),results=await Promise.allSettled(markets.map(m=>MarketData.quote(m,{signal:controller.signal,budgetMs:11000})));if(controller!==quoteController||controller.signal.aborted)return;
+  for(let i=0;i<markets.length;i++){const result=results[i];if(result.status==='fulfilled')quotes[markets[i].ticker]={...result.value,at:result.value.receivedAt};}
+ }
  catch{/* Preserve the timestamp on previous quotes; staleness is explicit. */}
- finally{clearTimeout(timeout);quoteBusy=false;refreshQuoteDisplays();renderQuote();feedStatus();}
+ finally{clearTimeout(timeout);if(controller===quoteController){quoteBusy=false;refreshQuoteDisplays();renderQuote();feedStatus();}}
 }
 function bookRows(rows,side){const max=Math.max(...rows.map(r=>r[1]),1);return rows.map(([p,q])=>`<div class="book-row" style="--depth:${Math.min(100,q/max*100).toFixed(1)}%;--fill:${side==='ask'?'var(--red)':'var(--green)'}"><span class="${side==='ask'?'down':'up'}">${price(p)}</span><span>${qty(q)}</span><span class="muted">${qty(p*q)}</span></div>`).join('');}
 function renderBook(){
  if(!book)return;const asks=book.asks.slice(0,7).reverse(),bids=book.bids.slice(0,7),spread=book.asks[0][0]-book.bids[0][0],mid=(book.asks[0][0]+book.bids[0][0])/2;
  $('bookBody').innerHTML=`<div class="columns"><span>PRICE (USD)</span><span>SIZE (${current().ticker})</span><span>TOTAL (USD)</span></div>${bookRows(asks,'ask')}<div class="mid-price"><span>${price(mid)}</span><small>MID PRICE<br>SPREAD ${price(spread)}</small></div>${bookRows(bids,'bid')}`;
- $('bookStatus').textContent=`KRAKEN · ${timeUTC(book.at)} UTC · 10s`;renderDepth();
+ $('bookStatus').textContent=`${book.venue||'Public exchange'}${book.failed?' · STALE · refresh failed':book.fallbackUsed?' · FALLBACK':''} · ${timeUTC(book.at)} UTC · 10s`;renderDepth();
 }
 function renderDepth(){
  if(!book)return;const W=220,H=220,pad=15,bids=book.bids.slice(0,25),asks=book.asks.slice(0,25),min=bids[bids.length-1][0],max=asks[asks.length-1][0];if(max<=min)return;let bc=0,ac=0;const bidPoints=bids.map(([p,q])=>[p,bc+=q]),askPoints=asks.map(([p,q])=>[p,ac+=q]),peak=Math.max(bc,ac),x=p=>pad+(p-min)/(max-min)*(W-pad*2),y=q=>H-pad-q/peak*(H-pad*2);
@@ -941,13 +1324,15 @@ function renderDepth(){
  $('depthChart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative order book depth. Green bids on left, red asks on right. Maximum cumulative quantity ${qty(peak)} ${current().ticker}."><path d="M15 40H205M15 90H205M15 140H205M15 205H205" stroke="#202b38" stroke-dasharray="2 4" fill="none"/><path d="${path(bidPoints)}" fill="#35c8a322" stroke="#35c8a3" stroke-width="1.3"/><path d="${path(askPoints)}" fill="#ee697c22" stroke="#ee697c" stroke-width="1.3"/><g fill="#788799" font-size="8" font-family="monospace"><text x="15" y="217">${price(min)}</text><text x="205" y="217" text-anchor="end">${price(max)}</text><text x="15" y="10">${qty(peak)} ${current().ticker}</text></g></svg>`;
 }
 function showDetailError(message){
- book=null;$('bookStatus').textContent='KRAKEN · Snapshot unavailable';$('bookBody').innerHTML=`<div class="book-empty"><strong>Order book unavailable</strong>${escapeHTML(message)}<br><button data-retry-feed>Retry feed</button></div>`;$('depthChart').innerHTML='<div class="book-empty">Depth requires an available order book.</div>';
+ if(book){book.failed=true;renderBook();$('bookStatus').title=message;return;}
+ book=null;$('bookStatus').textContent='Compatible sources unavailable';$('bookBody').innerHTML=`<div class="book-empty"><strong>Order book unavailable</strong>${escapeHTML(message)}<br><button data-retry-feed>Retry feed</button></div>`;$('depthChart').innerHTML='<div class="book-empty">Depth requires an available order book.</div>';
 }
 async function refreshDetails(){
  if(!current().crypto||detailBusy)return;detailBusy=true;lastDetailAttempt=Date.now();const version=marketVersion,m=current(),controller=new AbortController();detailController=controller;const timeout=setTimeout(()=>controller.abort(),12000);
- try{const results=await Promise.allSettled([kraken('Depth',{pair:m.pair,count:'25'},controller.signal),kraken('Trades',{pair:m.pair,count:'20'},controller.signal)]);if(version!==marketVersion)return;
- const depth=results[0];if(depth.status==='fulfilled'){const row=Object.values(depth.value)[0];const convert=rows=>(rows||[]).map(r=>[Number(r[0]),Number(r[1])]).filter(r=>r.every(Number.isFinite)&&r[0]>0&&r[1]>0);const bids=convert(row?.bids).sort((a,b)=>b[0]-a[0]),asks=convert(row?.asks).sort((a,b)=>a[0]-b[0]);if(bids.length&&asks.length&&asks[0][0]>=bids[0][0]){book={bids,asks,at:Date.now()};renderBook();}else showDetailError('The exchange returned no usable depth.');}else showDetailError('Check your connection, or try again shortly.');
- const trades=results[1];if(trades.status==='fulfilled'){const rows=Object.entries(trades.value).find(([k,v])=>k!=='last'&&Array.isArray(v))?.[1]||[];const valid=rows.filter(r=>Number.isFinite(Number(r[0]))&&Number.isFinite(Number(r[1]))&&Number.isFinite(Number(r[2]))).sort((a,b)=>Number(b[2])-Number(a[2])).slice(0,12);$('tradeBody').innerHTML=valid.map(r=>`<div class="trade-row"><time>${timeUTC(Number(r[2])*1000)}</time><span class="${r[3]==='b'?'up':'down'}">${price(r[0])}</span><span>${qty(r[1])}</span></div>`).join('')||'<div class="book-empty">No recent trades returned.</div>';tapeAt=Date.now();$('tapeStatus').textContent=`Snapshot ${timeUTC(tapeAt)} UTC · refresh 10s`;}else{tapeAt=0;$('tradeBody').innerHTML='<div class="book-empty">Trade feed unavailable. Retry with reload.</div>';$('tapeStatus').textContent='No current trade snapshot';}
+ try{const results=await Promise.allSettled([MarketData.book(m,{signal:controller.signal,budgetMs:11000}),MarketData.trades(m,{signal:controller.signal,budgetMs:11000})]);if(version!==marketVersion||controller.signal.aborted)return;
+ const depth=results[0];if(depth.status==='fulfilled'){book={...depth.value,at:depth.value.receivedAt};renderBook();}else showDetailError(depth.reason.message||'Check your connection, or try again shortly.');
+ const trades=results[1];if(trades.status==='fulfilled'){const data=trades.value,valid=data.items.slice(0,12);$('tradeBody').innerHTML=valid.map(r=>`<div class="trade-row"><time>${timeUTC(r.time*1000)}</time><span class="${r.side==='b'?'up':'down'}">${price(r.price)}</span><span>${qty(r.size)}</span></div>`).join('')||'<div class="book-empty">No recent trades returned.</div>';tapeAt=data.receivedAt;$('tradeVenue').textContent=data.venue;$('tapeStatus').textContent=`${data.venue}${data.fallbackUsed?' · FALLBACK':''} · snapshot ${timeUTC(tapeAt)} UTC · refresh 10s`;}else if(tapeAt){$('tapeStatus').textContent=`STALE · snapshot ${timeUTC(tapeAt)} UTC · refresh failed`;}
+ else{$('tradeBody').innerHTML='<div class="book-empty">'+escapeHTML(trades.reason.message||'Trade feed unavailable. Retry with reload.')+'</div>';$('tradeVenue').textContent='Unavailable';$('tapeStatus').textContent='No current trade snapshot';}
  }finally{clearTimeout(timeout);if(version===marketVersion)detailBusy=false;}
 }
 const mobileLayout=matchMedia('(max-width:650px)');
@@ -976,10 +1361,11 @@ $('fullscreenBtn').onclick=()=>{$('mainChart').classList.toggle('focus-mode');ch
 $('downloadBtn').onclick=()=>{const blob=new Blob([portableSource],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='market-terminal.html';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);toast('Portable HTML copy saved to your downloads.');};
 document.addEventListener('keydown',handleChartKeyDown);
 function clock(){const now=new Date();$('clock').textContent=now.toLocaleDateString('en-GB',{timeZone:'UTC',day:'2-digit',month:'short'})+' '+timeUTC(now)+' UTC';}
-function updateFreshness(){renderQuote();feedStatus();if(chartData)$('chartStatus').textContent=chartStatusText();const signature=Object.entries(quotes).map(([ticker,q])=>ticker+isFresh(q)).join();if(signature!==freshnessSignature){freshnessSignature=signature;refreshQuoteDisplays();}if(book&&Date.now()-book.at>30000)$('bookStatus').textContent=`KRAKEN · STALE · ${timeUTC(book.at)} UTC`;if(tapeAt&&Date.now()-tapeAt>30000)$('tapeStatus').textContent=`Snapshot stale · ${timeUTC(tapeAt)} UTC · waiting for refresh`;}
+function updateFreshness(){renderQuote();feedStatus();if(chartData)$('chartStatus').textContent=chartStatusText();const signature=Object.entries(quotes).map(([ticker,q])=>ticker+isFresh(q)).join();if(signature!==freshnessSignature){freshnessSignature=signature;refreshQuoteDisplays();}if(book&&Date.now()-book.at>30000)$('bookStatus').textContent=`${book.venue||'Public exchange'} · STALE · ${timeUTC(book.at)} UTC`;if(tapeAt&&Date.now()-tapeAt>30000)$('tapeStatus').textContent=`Snapshot stale · ${timeUTC(tapeAt)} UTC · waiting for refresh`;if($('feedsDialog').open)renderFeedSettingsStatus();}
 function tick(){clock();updateFreshness();alertsTick();if(document.hidden)return;if(!chartBusy&&Date.now()-lastChartAttempt>=chartRefreshMs(current()))loadChart(true);if(Date.now()-lastQuoteAttempt>=20000)refreshQuotes();if(current().crypto&&Date.now()-lastDetailAttempt>=10000)refreshDetails();}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){refreshAlerts();loadChart(true);refreshQuotes();if(current().crypto)refreshDetails();}});window.addEventListener('online',()=>{refreshAlerts(true);loadChart(true);refreshQuotes();if(current().crypto)refreshDetails();});window.addEventListener('offline',()=>{toast('Offline. Remote charts and feeds need an internet connection.');});
 if(applyTrendDefaults)save();
+initFeedSettings();
 renderAlerts();refreshAlerts();syncDrawer();renderStrip();renderSelection();loadChart();clock();refreshQuotes();if(current().crypto)refreshDetails();setInterval(tick,1000);
 })();
 </script>

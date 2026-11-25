@@ -64,7 +64,7 @@ The 35 curated starters comprise:
 | Longevity / health | LLY, ISRG, CRSP |
 | Natural resources | BHP, RIO, FCX |
 
-Added exchange-qualified symbols need a supported data adapter and an available remote feed. Adapters cover US stocks, selected international exchanges/FX, Kraken and Binance; they do not provide universal symbol coverage. Added markets are chart-only. Only starter BTC, ETH and BNB have surrounding Kraken quote, order-book, depth and trade panels, regardless of category placement.
+Added exchange-qualified symbols need a supported data adapter and an available remote feed. Adapters cover US stocks, selected international exchanges/FX, Kraken and Binance; they do not provide universal symbol coverage. Added markets are chart-only. Only starter BTC, ETH and BNB have surrounding exchange quote, order-book, depth and trade panels, regardless of category placement.
 
 Browser storage retains the market list, favorites, selection, interval, chart style, indicators, edited inputs, future-space setting and committed lines. **Save HTML** downloads the clean application. Use **Export JSON** separately to transfer categories, markets, selection, favorites, saved lines, alarm rules and event history (maximum 5 MB). It does not transfer all analysis preferences. Clearing browser storage removes saved preferences; direct-file storage varies by browser.
 
@@ -72,9 +72,13 @@ Browser storage retains the market list, favorites, selection, interval, chart s
 
 | Data | Source | Polling / history |
 | --- | --- | --- |
-| Crypto candles | Direct Kraken or Binance public API | Every 20s; Kraken up to 720 bars, Binance up to 1,000 |
-| Stock / supported international / FX candles | Yahoo Finance through the public cors.dev relay | Every 60s; 1m: 5d, 5–30m: 1mo, 1h/4h: 3mo, daily: 2y, weekly: 5y requested |
-| Starter crypto quotes / book / trades | Kraken public APIs | Quotes 20s; book/trades 10s |
+| Crypto candles | Requested Kraken/Binance venue, then compatible Coinbase Exchange, Bitstamp, Binance.US and other enabled adapters | Every 20s; exact base/quote currency preserved; history varies by source |
+| Stock / supported international / FX candles | Yahoo mirrors through enabled relay paths; optional Twelve Data for supported US stocks/FX | Every 60s; Yahoo 1m: 5d, 5–30m: 1mo, 1h/4h: 3mo, daily: 2y, weekly: 5y requested |
+| Starter crypto quotes / book / trades | The same configurable compatible exchange chain | Quotes 20s; book/trades 10s; depth derives from one whole order book |
+
+**Data sources** opens fallback settings and source health. Set **N** (1–20 maximum candidate attempts, default 5), enabled providers, relay paths and per-source/total timeouts. Settings persist locally. Requests advance after network errors, timeouts or unusable responses, respect `Retry-After` and cooldown failed sources before probing recovery. Source labels show the actual successful venue and fallback use. Venue histories are never spliced; USD is never replaced with USDT. Quote changes label their actual UTC-open or rolling-24h basis.
+
+The BTC/ETH/BNB USD starters have four configured compatible exchange candidates: Kraken, Coinbase Exchange, Bitstamp and Binance.US. Actual pair availability and regional access still depend on each venue. Yahoo's two mirrors and three relay options provide six configured paths to **one** stock provider, not six independent providers. AllOrigins and cors.lol are best-effort community backups and were unavailable/rate-limited in the latest checks. An optional personal Twelve Data key enables an independent supported US-stock/FX adapter; its plan limits apply. Keys are saved only in browser storage, sent directly to that provider and excluded from HTML/market-list exports. Hourly alarm requests also attempt that provider's timestamped quote; absent a valid quote, another source is tried before alarms wait. [Coverage, limits and provider terms](docs/DATA-SOURCES.md).
 
 These are snapshots. Source latency is **unspecified unless metadata supplies an exact delay**. Fetch time and candle opening time do not guarantee last-trade freshness. Weekly candle boundaries can differ by source. Available history may be shorter than requested; indicators show a dash until enough bars exist for their lookback. General Fusion predecessor bars before July 13, 2026 are excluded; SpaceX's real IPO weekly candle is preserved despite its earlier week-start label. Providers and the relay can fail or rate-limit; failures and stale retained snapshots are labeled.
 
@@ -91,11 +95,14 @@ These are snapshots. Source latency is **unspecified unless metadata supplies an
 
 ## Development and verification
 
-The five JavaScript authoring modules in `src/` are embedded by `python3 scripts/sync-chart-source.py`. They are not runtime dependencies: `market-terminal.html` remains the only application file to distribute. Relevant checks:
+The JavaScript authoring modules in `src/` are embedded by `python3 scripts/sync-chart-source.py`. They are not runtime dependencies: `market-terminal.html` remains the only application file to distribute. Relevant checks:
 
 ```sh
 node tests/verify-regressions.mjs
 node tests/verify-chart-data.mjs
+node tests/verify-crypto-feeds.mjs
+node tests/verify-feed-fallbacks.mjs
+node tests/verify-feed-settings.mjs
 node tests/verify-native-chart.mjs
 node tests/verify-alerts.mjs
 node tests/verify-amzn-study.mjs
@@ -103,7 +110,7 @@ node tests/verify-divergence-engine.mjs
 node tests/verify-amzn-divergence.mjs
 ```
 
-Current evidence includes 63 application regressions, 11 data checks and 15 alert-engine checks, native calculation/event checks, and live HTTP checks of all 35 starters, 16 stock/crypto interval combinations, custom INTC/Binance SOL/Kraken SOL, keyboard undo, future space, defaults and per-symbol drawing persistence. Read [current verification](docs/verification.md) for responsive/export results and evidence limits. The alerts pass adds 18 browser checks plus its exported-copy smoke test. The [Turtle preset pass](docs/verification.md) adds 17 browser checks. The [AMZN research pass](docs/verification.md) adds 14 research checks and verifies the new dropdown on live, mobile and exported views. The [four-EMA defaults pass](docs/verification.md) verifies migration, persistence, reset and rendered curves. Direct-file execution has not been agent-verified. [Feature gaps](docs/FEATURE-GAPS.md) and [the backlog](docs/roadmap.md) record remaining scope and limits.
+Current checks include 67 application regressions, 14 data checks, 11 crypto-adapter checks, 36 fallback checks, 11 source-settings checks and 15 alert-engine checks, plus native chart and research fixtures. The November 25 browser pass loaded all 35 starters and 16 BTC/AMZN interval combinations, custom SOL/USDT, SOL/USD and SOL/BNB, automatic provider/mirror failover, a fallback alarm, saved N settings, responsive layouts and real HTML/PNG exports. Earlier checks also covered custom INTC, keyboard undo, future space, defaults and per-symbol drawing persistence. Read [current verification](docs/verification.md) for responsive/export results and evidence limits. The alerts pass adds 18 browser checks plus its exported-copy smoke test. The [Turtle preset pass](docs/verification.md) adds 17 browser checks. The [AMZN research pass](docs/verification.md) adds 14 research checks and verifies the new dropdown on live, mobile and exported views. The [four-EMA defaults pass](docs/verification.md) verifies migration, persistence, reset and rendered curves. Direct-file execution has not been agent-verified. [Feature gaps](docs/FEATURE-GAPS.md) and [the backlog](docs/roadmap.md) record remaining scope and limits.
 
 ## License and public source package
 

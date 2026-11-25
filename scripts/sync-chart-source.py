@@ -5,7 +5,7 @@ import re
 root = Path(__file__).resolve().parents[1]
 path = root / "market-terminal.html"
 html = path.read_text()
-for marker, filename in [("NATIVE_ENGINE", "native-chart.js"), ("CHART_DATA", "chart-data.js"), ("CHART_CONTROLLER", "chart-controller.js"), ("ALERT_ENGINE", "alerts-engine.js"), ("ALERT_CONTROLLER", "alerts-controller.js")]:
+for marker, filename in [("NATIVE_ENGINE", "native-chart.js"), ("CRYPTO_FEEDS", "crypto-feeds.js"), ("CHART_DATA", "chart-data.js"), ("CHART_CONTROLLER", "chart-controller.js"), ("ALERT_ENGINE", "alerts-engine.js"), ("ALERT_CONTROLLER", "alerts-controller.js"), ("FEED_CONTROLLER", "feed-controller.js")]:
     pattern = rf"/\* {marker}_START \*/[\s\S]*?/\* {marker}_END \*/"
     source = (root / "src" / filename).read_text().rstrip()
     replacement = f"/* {marker}_START */\n{source}\n/* {marker}_END */"

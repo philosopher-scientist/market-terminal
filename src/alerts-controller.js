@@ -18,11 +18,11 @@ function alertsBackup(){return validateAlertStore(alertState);}
 function restoreAlerts(input){alertState=validateAlertStore(input);alertConfigVersion++;alertStatuses.clear();saveAlerts();renderAlerts();}
 function alertDescription(rule){return rule.type==='swing'?`${rule.direction==='either'?'Either direction':rule.direction==='up'?'Rise':'Fall'} ≥ ${rule.threshold}% / ${rule.windowHours}h`:`Price ${rule.type==='above'?'≥':'≤'} ${rule.threshold}`;}
 function alertMessage(text,error=false){$('alertsMessage').textContent=text;$('alertsMessage').className='manager-status'+(error?' error':'');}
-function alertSourceText(data){return data.provider==='yahoo'?(typeof data.delayMinutes==='number'?data.delayMinutes+' min reported delay':'delay unspecified'):'exchange snapshots; latency unspecified';}
+function alertSourceText(data){return data.marketType==='crypto'||['kraken','coinbase','bitstamp','binance','binance-us'].includes(data.provider)?'exchange snapshots; latency unspecified':(typeof data.delayMinutes==='number'?data.delayMinutes+' min reported delay':'delay unspecified');}
 function alertSnapshot(data,receivedAt=Date.now()){
  const last=data.bars?.[data.bars.length-1];if(!last)throw Error('No hourly candles returned.');
  let at,priceValue;
- if(data.provider==='yahoo'){
+ if(data.marketType==='stock'||data.marketType==='fx'||data.provider==='yahoo'||data.provider==='twelve'){
   if(!Number.isFinite(data.quoteTime)||!Number.isFinite(data.quote)||data.quote<=0)throw Error('The source did not supply a quote timestamp; alarm evaluation is waiting.');
   at=data.quoteTime*1000;priceValue=data.quote;
  }else{
@@ -86,8 +86,9 @@ async function refreshAlerts(force=false){
  const worker=async()=>{while(next<symbols.length){const symbol=symbols[next++];if(version!==alertConfigVersion||alertState.paused)break;
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
   try{
-   const market=MARKETS.find(m=>m.id===symbol),cache=alertFeedCache.get(symbol)||chartCache.get(symbol+'|60');
-   const data=cache&&Date.now()-cache.receivedAt<55000?cache:{...await MarketData.request(market,'60',{signal:controller.signal}),receivedAt:Date.now()};
+   const market=MARKETS.find(m=>m.id===symbol),cache=alertFeedCache.get(symbol)||chartCache.get(symbol+'|60'),requireQuote=MarketData.routeSymbol(symbol).type==='yahoo';
+   const cacheUsable=cache&&Date.now()-cache.receivedAt<55000&&(!requireQuote||Number.isFinite(cache.quoteTime)&&cache.quoteTime>0&&Number.isFinite(cache.quote)&&cache.quote>0);
+   const data=cacheUsable?cache:{...await MarketData.request(market,'60',{signal:controller.signal,budgetMs:19000,requireQuote}),receivedAt:Date.now()};
    alertFeedCache.set(symbol,data);if(alertFeedCache.size>20)alertFeedCache.delete(alertFeedCache.keys().next().value);
    const receivedAt=data.receivedAt||Date.now(),snapshot=alertSnapshot(data,receivedAt);
    if(version!==alertConfigVersion||alertState.paused||!MARKETS.some(m=>m.id===symbol))continue;

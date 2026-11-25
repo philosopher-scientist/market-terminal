@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-const context=vm.createContext({URLSearchParams,Date,Map,Set});
+const context=vm.createContext({URLSearchParams,Date,Map,Set,AbortController,setTimeout,clearTimeout});
+vm.runInContext(fs.readFileSync(new URL('../src/crypto-feeds.js',import.meta.url),'utf8'),context);
 vm.runInContext(fs.readFileSync(new URL('../src/chart-data.js',import.meta.url),'utf8')+';globalThis.api=MarketData;',context);
 const api=context.api;let passed=0;
 async function test(name,fn){await fn();passed++;console.log('PASS',name);}
@@ -9,6 +10,21 @@ const payload=(overrides={})=>({chart:{result:[{meta:{currency:'USD',symbol:'INT
 await test('Stock symbols map explicitly and unknown exchanges fail rather than silently changing source',()=>{
  assert.equal(api.routeSymbol('NYSE:BRK.B').ticker,'BRK-B');assert.equal(api.routeSymbol('LSE:VOD').ticker,'VOD.L');
  assert.equal(api.routeSymbol('BINANCE:SOLUSDT').pair,'SOLUSDT');assert.throws(()=>api.routeSymbol('UNKNOWN:ABC'),/No data adapter/);
+});
+await test('A source response for another stock cannot be accepted as the requested instrument',()=>{
+ assert.throws(()=>api.parseYahoo(payload({meta:{symbol:'MSFT',currency:'USD'}}),{ticker:'AMZN'},'D'),/symbol|instrument/i);
+});
+await test('A stock response for another interval cannot masquerade as intraday data',()=>{
+ assert.throws(()=>api.parseYahoo(payload({meta:{symbol:'AMZN',dataGranularity:'1d'}}),{ticker:'AMZN'},'60'),/interval/i);
+ assert.equal(api.parseYahoo(payload({meta:{symbol:'AMZN',dataGranularity:'1h'}}),{ticker:'AMZN'},'60').bars.length,3);
+});
+await test('A failed primary crypto candle source advances to a compatible USD venue',async()=>{
+ const calls=[];
+ const result=await api.request({symbol:'KRAKEN:BTCUSD',pair:'XBTUSD'},'D',{fetcher:async url=>{
+  calls.push(url);if(url.includes('api.kraken.com'))throw TypeError('Controlled primary network failure');
+  return {ok:true,status:200,json:async()=>[[1795478400,90,120,100,110,5],[1795564800,100,125,110,120,6]]};
+ }});
+ assert.equal(calls.length,2);assert.equal(result.currency,'USD');assert.equal(result.provider,'coinbase');assert.equal(result.bars.length,2);assert.match(result.source,/Coinbase/);
 });
 await test('Missing source delay remains unknown while an explicit delay is preserved',()=>{
  assert.equal(api.parseYahoo(payload(),{ticker:'INTC'},'D').delayMinutes,null);
@@ -24,11 +40,11 @@ await test('An off-grid intraday price snapshot updates the current bar without 
 });
 await test('General Fusion predecessor bars are excluded rather than presented as company history',()=>{
  const start=Date.parse('2026-07-13T00:00:00Z')/1000;
- const result=api.parseYahoo(payload({timestamp:[start-86400,start,start+86400]}),{ticker:'GFUZ'},'D');assert.equal(result.bars.length,2);assert.equal(result.bars[0].t,start);
+ const result=api.parseYahoo(payload({meta:{symbol:'GFUZ'},timestamp:[start-86400,start,start+86400]}),{ticker:'GFUZ'},'D');assert.equal(result.bars.length,2);assert.equal(result.bars[0].t,start);
 });
 await test('SpaceX retains the real IPO week even though its weekly bar is dated before IPO day',()=>{
  const first=Date.parse('2026-06-08T04:00:00Z')/1000;
- const result=api.parseYahoo(payload({timestamp:[first,first+604800,first+1209600]}),{ticker:'SPCX'},'W');assert.equal(result.bars.length,3);assert.equal(result.bars[0].t,first);
+ const result=api.parseYahoo(payload({meta:{symbol:'SPCX'},timestamp:[first,first+604800,first+1209600]}),{ticker:'SPCX'},'W');assert.equal(result.bars.length,3);assert.equal(result.bars[0].t,first);
 });
 await test('Kraken parses the pair data rather than the pagination cursor',()=>{
  const result=api.parseKraken({error:[],result:{last:100,XXBTZUSD:[[1,'10','12','9','11','10','3',2],[2,'11','13','10','12','11','5',4]]}},{pair:'XBTUSD'},'D');assert.equal(result.bars[1].v,5);assert.equal(result.currency,'USD');
@@ -44,6 +60,6 @@ await test('A missing stock symbol fails clearly without trying another instrume
  const calls=[];await assert.rejects(api.request({symbol:'NASDAQ:NOTREAL'},'D',{fetcher:async url=>{calls.push(url);return {ok:false,status:404,json:async()=>({chart:{error:{description:'No data found'}}})};}}),/No data found/);assert.equal(calls.length,1);
 });
 await test('Plain-text rate limits report HTTP status instead of a JSON parser failure',async()=>{
- await assert.rejects(api.request({symbol:'NASDAQ:AMZN'},'60',{fetcher:async()=>({ok:false,status:429,json:async()=>{throw SyntaxError('Unexpected token T');}})}),error=>error.message==='Market data HTTP 429'&&error.status===429);
+ await assert.rejects(api.request({symbol:'NASDAQ:AMZN'},'60',{fetcher:async()=>({ok:false,status:429,json:async()=>{throw SyntaxError('Unexpected token T');}})}),error=>/Market data HTTP 429/.test(error.message)&&error.status===429);
 });
 console.log(passed+' chart-data checks passed. Live browser integration is verified separately.');

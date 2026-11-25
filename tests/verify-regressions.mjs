@@ -8,8 +8,8 @@ const source = fs.readFileSync(new URL('../market-terminal.html', import.meta.ur
 const inline = source.match(/<script>([\s\S]*?)<\/script>/)[1];
 new vm.Script(inline);
 
-function harness({storage = null, alertsStorage = null, fetcher, storageWriteError = false, notification} = {}) {
-  let stored=storage,storedAlerts=alertsStorage,undoCalls=0;const writes=[];
+function harness({storage = null, alertsStorage = null, feedStorage = null, fetcher, storageWriteError = false, notification} = {}) {
+  let stored=storage,storedAlerts=alertsStorage,storedFeeds=feedStorage,undoCalls=0;const writes=[];
   let now = Date.parse('2026-11-02T17:00:00Z');
   class Clock extends Date { constructor(...args) { super(...(args.length ? args : [now])); } static now() { return now; } }
   class Node {
@@ -35,8 +35,8 @@ function harness({storage = null, alertsStorage = null, fetcher, storageWriteErr
   const strips = ['BTC','ETH','BNB'].map(ticker => { const n = new Node();n.dataset.select=ticker;n.nodes={span:new Node(),small:new Node()};return n; });
   const timers = new Map(),listeners=new Map(),downloads=[],observers=[],nativeCalls=[],requests=[];let timerId=0;
   const blobURLs={createObjectURL:blob=>{downloads.push(blob);return 'blob:test-export';},revokeObjectURL(){}};
-  const context = vm.createContext({console,Date:Clock,AbortController,URLSearchParams,Blob,URL:blobURLs,Map,Set,Notification:notification,
-    localStorage:{getItem(k){const value=k==='market-terminal-alerts-v1'?storedAlerts:stored;if(value instanceof Error)throw value;return value;},setItem(k,v){if(storageWriteError)throw Error('Storage write denied');if(k==='market-terminal-alerts-v1')storedAlerts=v;else stored=v;writes.push(v);}},
+  const context = vm.createContext({console,Date:Clock,AbortController,URLSearchParams,Blob,atob,URL:blobURLs,Map,Set,Notification:notification,
+    localStorage:{getItem(k){const value=k==='market-terminal-alerts-v1'?storedAlerts:k==='market-terminal-feeds-v1'?storedFeeds:stored;if(value instanceof Error)throw value;return value;},setItem(k,v){if(storageWriteError)throw Error('Storage write denied');if(k==='market-terminal-alerts-v1')storedAlerts=v;else if(k==='market-terminal-feeds-v1')storedFeeds=v;else stored=v;writes.push(v);}},
     document:{documentElement:{outerHTML:source.replace(/^<!doctype html>\s*/i,'')},getElementById:get,createElement:()=>new Node(),addEventListener:(type,listener)=>listeners.set(type,listener),hidden:false,activeElement:{tagName:'BODY'},querySelectorAll:s=>s==='.market-row'?rows:s==='.strip-item'?strips:[],body:new Node()},
     window:{addEventListener(){}},MutationObserver:class{constructor(fn){this.fn=fn;observers.push(this);}observe(){} disconnect(){}},
     setTimeout:fn=>{timers.set(++timerId,fn);return timerId;},clearTimeout:id=>timers.delete(id),setInterval(){},
@@ -56,13 +56,13 @@ function harness({storage = null, alertsStorage = null, fetcher, storageWriteErr
    getWorkspace:()=>JSON.parse(JSON.stringify(workspace)),
    setWorkspace(value){workspace={drawings:NativeMarketChart.validateDrawings(value.drawings),undoHistory:value.undoHistory||[]};},
    getSnapshot:()=>({pending:false,canUndo:true,drawings:workspace.drawings.length,drawingItems:workspace.drawings}),
-   undo(){nativeUndo();if(workspace.undoHistory.length)workspace.drawings=workspace.undoHistory.pop();return true;},toDataURL:()=>'',destroy:()=>canvas.remove()};};`);
+   undo(){nativeUndo();if(workspace.undoHistory.length)workspace.drawings=workspace.undoHistory.pop();return true;},toDataURL:()=>'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jwWQAAAAASUVORK5CYII=',destroy:()=>canvas.remove()};};`);
   vm.runInContext(controllerInline.replace(startup,`globalThis.api={qty,refreshQuotes,refreshDetails,updateFreshness,setTicker,current,loadChart,save,
     getState:()=>state,getQuotes:()=>quotes,setQuotes:v=>quotes=v,setBook:v=>book=v,setTapeAt:v=>tapeAt=v,getBook:()=>book,
     setState:v=>Object.assign(state,v),addMarket:(...a)=>addMarket(...a),removeMarket:(...a)=>removeMarket(...a),
     addCategory:(...a)=>addCategory(...a),removeCategory:(...a)=>removeCategory(...a),moveMarket:(...a)=>moveMarket(...a),
     importCatalog:(...a)=>importCatalog(...a),exportCatalog:()=>exportCatalog(),getMarkets:()=>MARKETS,getCategories:()=>SECTORS,
-    getChartData:()=>chartData,getChartVersion:()=>chartVersion,indicatorInputs,
+    getChartData:()=>chartData,getChartVersion:()=>chartVersion,indicatorInputs,applyFeedSettings,readFeedSettings,
     setLines:items=>{chartEngine.setWorkspace({drawings:items,undoHistory:[[]]});},getWorkspace:()=>chartEngine.getWorkspace(),
     getAlerts:()=>alertState,checkAlerts:()=>refreshAlerts(true),alertSnapshot:(...a)=>alertSnapshot(...a),alertAction:(...a)=>alertAction(...a),tick:()=>tick(),setHidden:v=>document.hidden=v};`),context);
   const click=dataset=>listeners.get('click')({target:{closest:()=>({dataset,hasAttribute:()=>false})}});
@@ -97,9 +97,18 @@ await test('Network failure preserves last quote timestamp and marks it stale',a
   const h=harness();const at=h.now();h.api.setQuotes({BTC:{last:100,change:1,at}});h.advance(70000);await h.api.refreshQuotes();
   assert.equal(h.api.getQuotes().BTC.at,at);assert.match(h.get('assetChange').textContent,/Stale/);
 });
+await test('A failed book/trade refresh retains the original snapshot timestamps and marks both stale',async()=>{
+ const h=harness(),at=h.now(),snapshot={bids:[[100,2]],asks:[[101,3]],at,venue:'Coinbase Exchange'};
+ h.api.setBook(snapshot);h.api.setTapeAt(at);h.get('tradeBody').innerHTML='Retained trade snapshot';
+ await h.api.refreshDetails();assert.equal(h.api.getBook().at,at);assert.equal(h.api.getBook().failed,true);assert.match(h.get('bookStatus').textContent,/Coinbase.*STALE/);assert.match(h.get('tapeStatus').textContent,/STALE.*refresh failed/);assert.equal(h.get('tradeBody').innerHTML,'Retained trade snapshot');
+});
+await test('Crypto quote UI names the fallback venue and its actual rolling change basis',async()=>{
+ const h=harness({fetcher:async url=>{if(url.includes('api.kraken.com'))throw TypeError('Controlled primary outage');return {ok:true,status:200,json:async()=>url.endsWith('/stats')?{open:'80'}:{price:'100',time:'2026-11-02T17:00:00Z'}};}});
+ await h.api.refreshQuotes();assert.match(h.get('assetChange').textContent,/rolling 24h.*Coinbase Exchange.*FALLBACK/);assert.equal(h.api.getQuotes().BTC.last,100);assert.equal(h.api.getQuotes().BTC.currency,'USD');
+});
 
 await test('Live response aliases map BTC, ETH, and BNB without assuming request names',async()=>{
-  const h=harness({fetcher:async()=>({ok:true,json:async()=>({error:[],result:{XXBTZUSD:{c:['100'],o:'80'},XETHZUSD:{c:['20'],o:'25'},BNBUSD:{c:['10'],o:'10'}}})})});
+  const h=harness({fetcher:async url=>({ok:true,json:async()=>({error:[],result:url.includes('XBTUSD')?{XXBTZUSD:{c:['100'],o:'80'}}:url.includes('ETHUSD')?{XETHZUSD:{c:['20'],o:'25'}}:{BNBUSD:{c:['10'],o:'10'}}})})});
   await h.api.refreshQuotes();assert.equal(h.api.getQuotes().BTC.change,25);assert.equal(h.api.getQuotes().ETH.change,-20);assert.equal(h.api.getQuotes().BNB.last,10);
 });
 
@@ -110,7 +119,7 @@ await test('Stock selection cannot display a crypto quote or crypto book',()=>{
 
 await test('Slow BTC detail response cannot overwrite a newly selected stock',async()=>{
   const pending=[];const h=harness({fetcher:url=>new Promise(resolve=>pending.push({url,resolve}))});
-  const oldRequest=h.api.refreshDetails();assert.equal(pending.length,2);h.api.setTicker('AMZN');
+  const oldRequest=h.api.refreshDetails();await Promise.resolve();await Promise.resolve();assert.equal(pending.length,2);h.api.setTicker('AMZN');
   for(const p of pending)p.resolve({ok:true,json:async()=>({error:[],result:p.url.includes('Depth')?{XXBTZUSD:{bids:[['100','1']],asks:[['101','1']]}}:{XXBTZUSD:[['100','1','1793640000','b']]}})});
   await oldRequest;assert.equal(h.api.getBook(),null);assert.equal(h.get('assetPrice').textContent,'AMZN');assert.equal(h.get('cryptoDetails').hidden,true);
 });
@@ -133,9 +142,10 @@ await test('A failed native candle request produces an actionable chart error',a
   assert.ok(h.get('chartMessage').children.some(n=>n.textContent==='Retry chart'));
 });
 
-await test('The selected outer interval explicitly reapplies to the native controller',()=>{
+await test('The selected outer interval explicitly reapplies to the native controller',async()=>{
   const h=harness();h.api.loadChart();const previous=h.api.getChartVersion();
   h.click({interval:'60'});
+  await Promise.resolve();await Promise.resolve();
   assert.ok(h.api.getChartVersion()>previous);assert.equal(h.api.getState().interval,'60');
   assert.match(h.requests.at(-1),/interval=60/);
 });
@@ -205,7 +215,7 @@ await test('Stock source delay stays unspecified unless the actual metadata supp
   const h=harness();h.api.setTicker('AMZN');
   assert.equal(h.get('chartFeedBadge').textContent,'DELAY UNSPECIFIED');
   assert.equal(h.get('chartFeedBadge').dataset.timing,'unknown');
-  assert.match(h.get('chartFeedDetail').textContent,/Yahoo Finance/);
+  assert.match(h.get('chartFeedDetail').textContent,/Stock source chain/);
   assert.doesNotMatch(h.get('chartFeedDetail').textContent,/\d+\s*(?:minutes?|min|m\b)/i);
 });
 
@@ -326,10 +336,14 @@ await test('A failed candle refresh preserves its real snapshot and marks it sta
   h.api.setState({ticker:'NASDAQ:AMZN'});await h.api.loadChart();const data=h.api.getChartData();fail=true;h.advance(70000);await h.api.loadChart(true);
   assert.equal(h.api.getChartData(),data);assert.equal(h.get('chartMessage').hidden,true);assert.match(h.get('chartStatus').textContent,/STALE.*refresh failed/);assert.match(h.get('assetChange').textContent,/STALE/);
 });
+await test('Chart image export downloads a PNG blob rather than relying on a data-URL navigation',async()=>{
+ const h=harness({fetcher:async()=>({ok:true,json:async()=>candlePayload()})});h.api.setState({ticker:'NASDAQ:AMZN'});await h.api.loadChart();assert.ok(h.api.getChartData(),'real controller must have a usable snapshot');h.get('saveChartImage').onclick();
+ assert.equal(h.downloads.length,1);assert.equal(h.downloads[0].type,'image/png');assert.deepEqual(Array.from(new Uint8Array(await h.downloads[0].arrayBuffer())).slice(0,8),[137,80,78,71,13,10,26,10]);
+});
 
 await test('Late candles from the previous symbol cannot replace the selected native chart',async()=>{
   const pending=[];const h=harness({fetcher:url=>new Promise(resolve=>pending.push({url,resolve}))});
-  h.api.setState({ticker:'NASDAQ:AMZN'});const old=h.api.loadChart();h.api.setState({ticker:'NASDAQ:AAPL'});const latest=h.api.loadChart();
+  h.api.setState({ticker:'NASDAQ:AMZN'});const old=h.api.loadChart();await Promise.resolve();await Promise.resolve();h.api.setState({ticker:'NASDAQ:AAPL'});const latest=h.api.loadChart();await Promise.resolve();await Promise.resolve();
   pending[1].resolve({ok:true,json:async()=>candlePayload('AAPL')});await latest;
   pending[0].resolve({ok:true,json:async()=>candlePayload('AMZN')});await old;
   assert.equal(h.api.getChartData().sourceSymbol,'AAPL');assert.equal(h.nativeCalls.at(-1).options.symbol,'NASDAQ:AAPL');
@@ -370,6 +384,13 @@ await test('Portable chart expansion does not depend on an unresolved native ful
 
 const lineFixture=[{type:'trend',a:{t:1720000000,value:180},b:{t:1800000000,value:270}},{type:'horizontal',value:230}];
 const plain=value=>JSON.parse(JSON.stringify(value));
+await test('Applying feed settings clears disabled-source snapshots while preserving drawings and keeping keys out of exports',async()=>{
+ const h=harness({fetcher:async()=>({ok:true,json:async()=>candlePayload()})});h.api.setState({ticker:'NASDAQ:AMZN'});await h.api.loadChart();h.api.setLines(lineFixture);
+ h.api.setQuotes({BTC:{last:100,change:1,at:h.now()}});h.api.setBook({bids:[[100,1]],asks:[[101,1]],at:h.now()});
+ const key='fixture-runtime-credential';h.api.applyFeedSettings({...h.api.readFeedSettings(),providers:[],twelveKey:key});
+ assert.equal(h.api.getChartData(),null);assert.equal(Object.keys(h.api.getQuotes()).length,0);assert.equal(h.api.getBook(),null);assert.deepEqual(plain(h.api.getWorkspace().drawings),lineFixture);
+ assert.ok(!h.api.exportCatalog().includes(key));h.get('downloadBtn').onclick();assert.ok(!(await h.downloads[0].text()).includes(key));
+});
 await test('Per-symbol lines and Undo survive weekly, hourly, daily and reverse transitions',async()=>{
  const h=harness({fetcher:async()=>({ok:true,json:async()=>candlePayload()})});h.api.setState({ticker:'NASDAQ:AMZN',interval:'W'});await h.api.loadChart();h.api.setLines(lineFixture);h.pointerUp();
  const workspace=plain(h.api.getWorkspace());
@@ -426,7 +447,7 @@ await test('Invalid alert input and malformed alert imports are atomic; old back
 });
 await test('Pausing an alarm during an in-flight request prevents a late trigger',async()=>{
  const pending=[];const h=harness({fetcher:()=>new Promise(resolve=>pending.push(resolve))});addTestAlert(h);const rule=h.api.getAlerts().rules[0];h.api.alertAction('toggle',rule.id);
- const payload=candlePayload();Object.assign(payload.chart.result[0].meta,{regularMarketTime:h.now()/1000,regularMarketPrice:13});pending[0]({ok:true,json:async()=>payload});await h.api.checkAlerts();
+ await Promise.resolve();await Promise.resolve();const payload=candlePayload();Object.assign(payload.chart.result[0].meta,{regularMarketTime:h.now()/1000,regularMarketPrice:13});pending[0]({ok:true,json:async()=>payload});await h.api.checkAlerts();
  assert.equal(h.api.getAlerts().history.length,0);assert.equal(h.api.getAlerts().rules[0].enabled,false);
 });
 await test('Alert backups round-trip rules and history, and Esc closes alerts before chart undo',async()=>{

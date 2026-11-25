@@ -99,7 +99,7 @@ function undoChartAction(showEmpty=false){
 }
 function handleChartKeyDown(e){
  const active=document.activeElement,editing=['INPUT','TEXTAREA','SELECT'].includes(active?.tagName)||active?.isContentEditable;
- const openDialog=['alertsDialog','indicatorDialog','marketsDialog','aboutDialog'].find(id=>$(id).open);
+ const openDialog=['feedsDialog','alertsDialog','indicatorDialog','marketsDialog','aboutDialog'].find(id=>$(id).open);
  if(e.key==='Escape'){
   if(openDialog){e.preventDefault();$(openDialog).close();return;}
   if($('app').classList.contains('drawer-open')){e.preventDefault();closeDrawer();return;}
@@ -134,4 +134,9 @@ $('futureSpace').onchange=()=>{state.futureSpace=Number($('futureSpace').value);
 document.addEventListener('pointerup',e=>{if(e.target.closest?.('#chartHost')){rememberChartWorkspace(true);updateDrawingStatus();}});
 window.addEventListener('pagehide',()=>rememberChartWorkspace(true));
 $('chartScale').onchange=()=>chartEngine?.setScale($('chartScale').value);
-$('saveChartImage').onclick=()=>{if(!chartData)return;const a=document.createElement('a');a.href=chartEngine.toDataURL();a.download=current().ticker+'-chart.png';document.body.append(a);a.click();a.remove();};
+$('saveChartImage').onclick=()=>{
+ if(!chartData)return;
+ const data=chartEngine.toDataURL(),encoded=data.split(',')[1];if(!data.startsWith('data:image/png;base64,')||!encoded)return;
+ const bytes=Uint8Array.from(atob(encoded),character=>character.charCodeAt(0)),url=URL.createObjectURL(new Blob([bytes],{type:'image/png'}));
+ const a=document.createElement('a');a.href=url;a.download=current().ticker+'-chart.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+};

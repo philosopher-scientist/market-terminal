@@ -15,6 +15,9 @@ Use Node.js 24 or later for checks. No npm packages are required:
 node tests/verify-regressions.mjs
 node tests/verify-native-chart.mjs
 node tests/verify-chart-data.mjs
+node tests/verify-crypto-feeds.mjs
+node tests/verify-feed-fallbacks.mjs
+node tests/verify-feed-settings.mjs
 node tests/verify-alerts.mjs
 node tests/verify-amzn-study.mjs
 node tests/verify-divergence-engine.mjs
@@ -32,7 +35,7 @@ flow, relevant responsive layouts, saved preferences and provider failures.
 Offline fixtures do not prove live provider access. Reproduce behavior changes
 before fixing them and preserve existing indicator, drawing and export behavior.
 
-`python3 tests/verify-preview.py` starts the optional preview helper, including responsive and provider-blocked routes. Reuse an existing
+`python3 tests/verify-preview.py` starts the optional preview helper, including responsive and provider-blocked routes. `/primary-blocked.html` blocks Kraken, `/two-primaries-blocked.html` blocks Kraken and Coinbase, and `/stock-primary-blocked.html` permits only Yahoo query2 through cors.dev. These CSP fixtures exercise automatic failover to live alternatives. Reuse an existing
 preview service when one is already running. Keep local datasets and run outputs
 in the ignored `local-data/` and `local-runs/` paths, or a location you configure.
 
